@@ -124,7 +124,23 @@ public class MapeadorFuncionario {
         
     }
     
-    public Collection getFuncionarios() {
+    public Collection<Funcionario> getFuncionarios() {
         return this.cacheFuncionarios.values();
+    }
+    
+    /**
+     * Metodo que remove um Funcionario de acordo com a sua Key (definida como
+     * a sua matricula).
+     * 
+     * @param chaveFuncionario - Do Funcionario que se quer remover.
+     * @return  true - Caso existe um Funcionario com essa matricula (e foi
+     * removida) / false - Caso nao exista um Funcioanrio com essa matricula.
+     */
+    public boolean removeByMatricula (Integer chaveFuncionario) {
+        if (this.cacheFuncionarios.remove(chaveFuncionario) == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
