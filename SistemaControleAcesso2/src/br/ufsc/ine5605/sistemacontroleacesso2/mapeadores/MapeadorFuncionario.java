@@ -1,10 +1,13 @@
 package br.ufsc.ine5605.sistemacontroleacesso2.mapeadores;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -87,8 +90,41 @@ public class MapeadorFuncionario {
         
     }
     
+    /**
+     * Converte dados estaticos de um arquivo em dados dinamicos para serem
+     * manipulados dentro da maquina virtual do java.
+     */
     public void load () {
+        try {
+            //Abrir um fluxo de dados saindo de um arquivo:
+            FileInputStream fileInputStream = new FileInputStream(this.nomeDoArquivo);
+            //Criar um caminho de dados para serem convertidos em Objetos dinamicos
+            //dentro do java:
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            
+            //Pegar os dados que foram enviados do arquivo e gerar um objeto.
+            //por fim associar esse objeto a nossa "cache" de funcionarios,
+            //isso para que possamos manipualr os dados.
+            this.cacheFuncionarios = (HashMap<Integer, Funcionario>) objectInputStream.readObject();
+            
+            //Fechar os fluxos de dados:
+            objectInputStream.close();
+            fileInputStream.close();
+            //Liberar espaco na memoria:
+            objectInputStream = null;
+            fileInputStream = null;
+            
+        } catch (FileNotFoundException execao) {
+            System.out.println(execao);
+        } catch (IOException execao) {
+            System.out.println(execao);
+        } catch (ClassNotFoundException execao) {
+            System.out.println(execao);
+        }
         
     }
     
+    public Collection getFuncionarios() {
+        return this.cacheFuncionarios.values();
+    }
 }
