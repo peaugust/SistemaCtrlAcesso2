@@ -124,6 +124,12 @@ public class MapeadorFuncionario {
         
     }
     
+    /**
+     * Metodo que retorna os Objetos Funcionarios da HasMap em uma Collection de
+     * Funcionarios. Chama o HashMap.values().
+     * 
+     * @return Collection - de Funcionarios.
+     */
     public Collection<Funcionario> getFuncionarios() {
         return this.cacheFuncionarios.values();
     }
@@ -137,10 +143,7 @@ public class MapeadorFuncionario {
      * removida) / false - Caso nao exista um Funcioanrio com essa matricula.
      */
     public boolean removeByMatricula (Integer chaveFuncionario) {
-        if (this.cacheFuncionarios.remove(chaveFuncionario) == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return this.cacheFuncionarios.remove(chaveFuncionario) != null;
     }
+    
 }
