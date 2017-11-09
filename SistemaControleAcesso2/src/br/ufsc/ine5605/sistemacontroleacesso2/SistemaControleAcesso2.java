@@ -5,6 +5,8 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
+
 /**
  *
  * @author Joao Vitor Venancio
@@ -16,6 +18,7 @@ public class SistemaControleAcesso2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ControladorGeral.getInstance().getControladorFuncionario();
     }
     
 }

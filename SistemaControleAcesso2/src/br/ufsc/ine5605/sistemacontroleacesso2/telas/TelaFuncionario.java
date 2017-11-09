@@ -26,11 +26,14 @@ public class TelaFuncionario extends JFrame {
     public TelaFuncionario () {
         //Metodo para configurar a GUI:
         this.definirGUI();
-        //Quando clicado no X, não acontece nada:
+        
+        //Mudar o titula da minha Frame:
+        this.setTitle("Gerenciar Funcionarios:");
+        //Quando clicado no X na Frame, não acontece nada:
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        //Definir o tamanho da Janela (Herdado de Window):
+        //Definir o tamanho da Janela(Herdado de Window):
         this.setSize(600, 600);
-        //Definir que a a Janela vai ser criada no centro da tela:
+        //Definir que a Janela vai ser criada no centro da tela:
         this.setLocationRelativeTo(null);
         //Se pode ser modificado o tamanho dela:
         this.setResizable(true);
@@ -47,14 +50,70 @@ public class TelaFuncionario extends JFrame {
         //Criar as especificacoes para o meu GridBag:
         GridBagConstraints constraints = new GridBagConstraints();
         
-        //Criar um novo botao:
+        //Definir o bota de Cadastrar:
         this.botaoCadastrar = new JButton("Cadastrar um Usuário");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o botao:
         painel.add(this.botaoCadastrar, constraints);
         
+        //Botao de remover um usuario:
+        this.botaoRemover = new JButton("Remover um Usuário");
+        //Definir suas especificacoes dentro do GridBagLayout:
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 2;
+        constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o botao:
+        painel.add(this.botaoRemover, constraints);
+        
+        //Botao de Listar um usuario:
+        this.botaoListar = new JButton("Listar um Usuário");
+        //Definir suas especificacoes dentro do GridBagLayout:
+        constraints.gridx = 2;
+        constraints.gridy = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 2;
+        constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o botao:
+        painel.add(this.botaoListar, constraints);
+        
+        //Botao de Modificar um usuario:
+        this.botaoModificar = new JButton("Modificar um Usuário");
+        //Definir suas especificacoes dentro do GridBagLayout:
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.weightx = 1;
+        constraints.weighty = 2;
+        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o botao:
+        painel.add(this.botaoModificar, constraints);
+        
+        //Botao de sair:
+        this.botaoVoltar = new JButton("Voltar");
+        //Definir suas especificacoes dentro do GridBagLayout:
+        constraints.gridx = 2;
+        constraints.gridy = 1;
+        constraints.weightx = 1;
+        constraints.weighty = 2;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o botao:
+        painel.add(this.botaoVoltar, constraints);
+        
+    }
+    
+    public void iniciarTela() {
+        this.setVisible(true);
+    }
+    
+    public void desligarTela() {
+        this.setVisible(false);
     }
 }

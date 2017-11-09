@@ -3,6 +3,7 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaFuncionario;
 import java.util.Calendar;
 import java.util.Collection;
 
@@ -22,6 +23,11 @@ public class ControladorFuncionario {
      */
     private MapeadorFuncionario mapeador;
     
+    /**
+     * Atribtuo que contem a GUI dos Funcionarios.
+     */
+    private TelaFuncionario telaFuncionario;
+    
     //Construtor:
     /**
      * Construtor da classe. Recebe o owner como entrada e cria um novo mapeador
@@ -32,6 +38,7 @@ public class ControladorFuncionario {
     public ControladorFuncionario (ControladorGeral controladorGeral) {
         this.controladorGeral = controladorGeral;
         this.mapeador = new MapeadorFuncionario ();
+        this.telaFuncionario = new TelaFuncionario();
     }
     
     //Metodos:
