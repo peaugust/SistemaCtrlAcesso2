@@ -1,9 +1,12 @@
 
 package br.ufsc.ine5605.sistemacontroleacesso2.telas;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,10 +23,14 @@ public class TelaControladorGeral extends JFrame {
     private JButton botaoRegistros;
     private JButton botaoPorta;
     private JButton botaoVoltar;
+    private GerenciadorBotoes gerenciadorBotoes;
     
     
     //Construtor:
     public TelaControladorGeral () {
+        //Instanciar o ActionListener:
+        this.gerenciadorBotoes = new GerenciadorBotoes();
+        
         //Metodo para configurar a GUI:
         this.definirGUI();
         
@@ -58,6 +65,8 @@ public class TelaControladorGeral extends JFrame {
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o ActionListenre ao botao:
+        this.botaoCargos.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoCargos, constraints);
         
@@ -69,6 +78,8 @@ public class TelaControladorGeral extends JFrame {
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o ActionListenre ao botao:
+        this.botaoFuncionarios.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoFuncionarios, constraints);
         
@@ -109,11 +120,31 @@ public class TelaControladorGeral extends JFrame {
         
     }
     
-    public void iniciar() {
+    public void iniciarTela() {
         this.setVisible(true);
     }
     
-    public void desligar() {
+    public void desligarTela() {
         this.setVisible(false);
+    }
+    
+    /**
+     * Uma subclasse para cuidar dos botoes.
+     */
+    public class GerenciadorBotoes implements ActionListener {    
+        /**
+         * 
+         * 
+         * @param evento -
+         */
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            //!!!Adicionar mais comparacoes ao adicionar mais telas!!!
+            if (evento.getSource().equals(botaoFuncionarios)) {
+                ControladorGeral.getInstance().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
+            }
+        }
+        
     }
 }

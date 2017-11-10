@@ -1,9 +1,12 @@
 
 package br.ufsc.ine5605.sistemacontroleacesso2.telas;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,10 +23,14 @@ public class TelaFuncionario extends JFrame {
     private JButton botaoListar;
     private JButton botaoModificar;
     private JButton botaoVoltar;
+    private GerenciadorBotoes gerenciadorBotoes;
     
     
     //Construtor:
     public TelaFuncionario () {
+        //Iniciar o ActionListener (Gerenciador De Botoes):
+        this.gerenciadorBotoes = new GerenciadorBotoes();
+        
         //Metodo para configurar a GUI:
         this.definirGUI();
         
@@ -38,7 +45,7 @@ public class TelaFuncionario extends JFrame {
         //Se pode ser modificado o tamanho dela:
         this.setResizable(true);
         //Deixar que seja visto:
-        this.setVisible(true);
+        this.setVisible(false);
         
     }
     
@@ -58,6 +65,8 @@ public class TelaFuncionario extends JFrame {
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o ActionListenre ao botao:
+        this.botaoCadastrar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoCadastrar, constraints);
         
@@ -109,11 +118,31 @@ public class TelaFuncionario extends JFrame {
         
     }
     
-    public void iniciar() {
+    public void iniciarTela() {
         this.setVisible(true);
     }
     
-    public void desligar() {
+    public void desligarTela() {
         this.setVisible(false);
+    }
+    
+    /**
+     * Uma subclasse para cuidar dos botoes.
+     */
+    public class GerenciadorBotoes implements ActionListener {    
+        /**
+         * 
+         * 
+         * @param evento -
+         */
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            //Terminar de fazer:
+            if (evento.getSource().equals(botaoCadastrar)) {
+                ControladorGeral.getInstance().getControladorFuncionario().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorFuncionario().getTelaCadastrarFuncionario().iniciarTela();
+            }
+        }
+        
     }
 }
