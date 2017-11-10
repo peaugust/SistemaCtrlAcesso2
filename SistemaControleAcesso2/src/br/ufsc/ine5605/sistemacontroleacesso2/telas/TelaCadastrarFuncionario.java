@@ -36,9 +36,14 @@ public class TelaCadastrarFuncionario extends JFrame {
     private JTextField campoSalario;
     private JLabel labelCargo;
     private JTextField campoCargo;
+    private JButton botaoCriar;
+    private GerenciadorBotoes gerenciadorBotoes;
             
     //Construtor:
     public TelaCadastrarFuncionario () {
+        //Iniciarlizar o AcitionListener:
+        this.gerenciadorBotoes = new GerenciadorBotoes();
+        
         //Metodo para configurar a GUI:
         this.definirGUI();
         
@@ -68,6 +73,10 @@ public class TelaCadastrarFuncionario extends JFrame {
         painel.setLayout(new GridBagLayout()); //Defino o Laytou para o GridBag
         //Criar as especificacoes para o meu GridBag:
         GridBagConstraints constraints = new GridBagConstraints();
+        
+        //
+        //Rotulos:
+        //
         
         //Definir o primeiro rotulo:
         this.labelMatricula = new JLabel("Insira um numero de matricula:     ");
@@ -267,6 +276,25 @@ public class TelaCadastrarFuncionario extends JFrame {
         //Adicionar o campo ao meu container:
         painel.add(this.campoCargo, constraints);
         
+        //
+        //Botao:
+        //
+        this.botaoCriar = new JButton ("Criar");
+        //Definir o layout:
+        constraints.gridx = 0;
+        constraints.gridy = 9;
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.fill = GridBagConstraints.BOTH;
+        //Adicioanr o action listener:
+        this.botaoCriar.addActionListener(this.gerenciadorBotoes);
+        //Adicionar o botao:
+        painel.add(this.botaoCriar, constraints);
+        
+        
+        
+        
     }
     
     public void iniciarTela() {
@@ -275,6 +303,25 @@ public class TelaCadastrarFuncionario extends JFrame {
     
     public void desligarTela() {
         this.setVisible(false);
+    }
+    
+    /**
+     * Uma subclasse para cuidar dos botoes.
+     */
+    public class GerenciadorBotoes implements ActionListener {    
+        /**
+         * 
+         * 
+         * @param evento -
+         */
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            //Terminar de fazer:
+            if (evento.getSource().equals(botaoCriar)) {
+                
+            }
+        }
+        
     }
     
 }
