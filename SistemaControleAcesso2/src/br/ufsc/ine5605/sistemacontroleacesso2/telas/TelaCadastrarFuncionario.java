@@ -58,6 +58,10 @@ public class TelaCadastrarFuncionario extends JFrame {
     }
     
     //Metodos:
+    /**
+     * Metodo que eh chamado para fazer todas as configuracoes (disposicoes de botoes e textos)
+     * dentro da GUI.
+     */
     private void definirGUI () {
         JPanel painel = new JPanel (); //Um novo Container para o meu Frame (JFrame)
         this.getContentPane().add(painel); //Pego o Container do meu JFrame e adiciono o Container do java swing (JPanel). Mexo agora apenas com o Container (JPane) do Swing
