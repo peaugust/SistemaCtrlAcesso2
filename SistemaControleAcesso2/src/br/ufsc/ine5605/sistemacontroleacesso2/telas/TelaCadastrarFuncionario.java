@@ -40,6 +40,7 @@ public class TelaCadastrarFuncionario extends JFrame {
     private JLabel labelCargo;
     private JTextField campoCargo;
     private JButton botaoCriar;
+    private JButton botaoVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
             
     //Construtor:
@@ -280,7 +281,7 @@ public class TelaCadastrarFuncionario extends JFrame {
         painel.add(this.campoCargo, constraints);
         
         //
-        //Botao:
+        //Botoes:
         //
         this.botaoCriar = new JButton ("Criar");
         //Definir o layout:
@@ -295,7 +296,19 @@ public class TelaCadastrarFuncionario extends JFrame {
         //Adicionar o botao:
         painel.add(this.botaoCriar, constraints);
         
-        
+        //Botao para voltar:
+        this.botaoVoltar = new JButton ("Voltar");
+        //Definir o layout:
+        constraints.gridx = 0;
+        constraints.gridy = 10;
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.fill = GridBagConstraints.BOTH;
+        //Adicioanr o action listener:
+        this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
+        //Adicionar o botao:
+        painel.add(this.botaoVoltar, constraints);
         
         
     }
@@ -353,8 +366,21 @@ public class TelaCadastrarFuncionario extends JFrame {
             if (evento.getSource().equals(botaoCriar)) {
                 
                 try {
-                    //Chama o metodo de adicionar funcionario que joga execoes:
+                    //Chama o metodo de adicionar funcionario (joga execoes):
                     ControladorGeral.getInstance().getControladorFuncionario().adicionarFuncionario( criarEnvelope() );
+                    //Trocar para a tela anterior:
+                    desligarTela();
+                    ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
+                    //Tirar os inputs anteriores do buffer:
+                    campoMatricula.setText("");
+                    campoNome.setText("");
+                    campoDia.setText("");
+                    campoMes.setText("");
+                    campoAno.setText("");
+                    campoTelefone.setText("");
+                    campoSalario.setText("");
+                    campoCargo.setText("");
+                    
                     
                 } catch ( IllegalArgumentException execao) { //Vai criar um JOptionPane avisando qual foi o erro de Input:
                     
@@ -370,6 +396,20 @@ public class TelaCadastrarFuncionario extends JFrame {
                     
                 }
                 
+            } else if (evento.getSource().equals(botaoVoltar)) {
+                
+                desligarTela();
+                ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
+                //Tirar os inputs anteriores do buffer:
+                campoMatricula.setText("");
+                campoNome.setText("");
+                campoDia.setText("");
+                campoMes.setText("");
+                campoAno.setText("");
+                campoTelefone.setText("");
+                campoSalario.setText("");
+                campoCargo.setText("");
+                    
             }
         }
         
