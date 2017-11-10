@@ -2,6 +2,8 @@
 package br.ufsc.ine5605.sistemacontroleacesso2.telas;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
+import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.ICargo;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -306,6 +309,30 @@ public class TelaCadastrarFuncionario extends JFrame {
     }
     
     /**
+     * A partir dos campos inseridos, eh criado um envelope com os dados. Tem integracao
+     * com o ControladorCargo.
+     * 
+     * @return EnvelopeFuncionario - com os dados nescessarios para criar um.
+     */
+    public EnvelopeFuncionario criarEnvelope() {
+        int numeroDeMatricula = Integer.parseInt(this.campoMatricula.getText());
+        String nome = this.campoNome.getText();
+        String telefone = this.campoTelefone.getText();
+        int salario = Integer.parseInt(this.campoSalario.getText());
+        //Encontrar o cargo:
+        int codigoCargo = Integer.parseInt(this.campoCargo.getText());
+//        ICargo cargo = ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(codigoCargo);
+        ICargo cargo = null;
+        //Para o dia de nascimento:
+        int ano = Integer.parseInt(this.campoAno.getText());
+        int mes = Integer.parseInt(this.campoMes.getText());
+        int dia = Integer.parseInt(this.campoDia.getText());
+                
+        return new EnvelopeFuncionario(numeroDeMatricula, nome,
+        telefone, salario, cargo, ano, mes, dia);
+    }
+    
+    /**
      * Uma subclasse para cuidar dos botoes.
      */
     public class GerenciadorBotoes implements ActionListener {    
@@ -316,8 +343,26 @@ public class TelaCadastrarFuncionario extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
-            //Terminar de fazer:
+            //Quando o botao de crair for pressionado:
             if (evento.getSource().equals(botaoCriar)) {
+                
+                try {
+                    //Chama o metodo de adicionar funcionario que joga execoes:
+                    ControladorGeral.getInstance().getControladorFuncionario().adicionarFuncionario( criarEnvelope() );
+                    
+                } catch ( IllegalArgumentException execao) { //Vai criar um JOptionPane avisando qual foi o erro de Input:
+                    
+                    if (execao.getMessage().equals("For input string: \"\"")) {
+                        
+                        JOptionPane.showMessageDialog(null, "Campo em Branco é inválido.");
+                        
+                    } else {
+                        
+                        JOptionPane.showMessageDialog(null, execao.getMessage());
+                        
+                    }
+                    
+                }
                 
             }
         }
