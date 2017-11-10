@@ -18,7 +18,7 @@ public class SistemaControleAcesso2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ControladorGeral.getInstance().getControladorFuncionario();
+        ControladorGeral.getInstance().getTela().iniciarTela();
     }
     
 }

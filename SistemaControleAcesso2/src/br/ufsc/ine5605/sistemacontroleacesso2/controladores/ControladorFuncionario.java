@@ -3,6 +3,7 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCadastrarFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaFuncionario;
 import java.util.Calendar;
 import java.util.Collection;
@@ -28,6 +29,11 @@ public class ControladorFuncionario {
      */
     private TelaFuncionario telaFuncionario;
     
+    /**
+     * Atributo com a GUI de cadastsrar funcionarios.
+     */
+    private TelaCadastrarFuncionario telaCadastrarFuncionario;
+    
     //Construtor:
     /**
      * Construtor da classe. Recebe o owner como entrada e cria um novo mapeador
@@ -39,15 +45,16 @@ public class ControladorFuncionario {
         this.controladorGeral = controladorGeral;
         this.mapeador = new MapeadorFuncionario ();
         this.telaFuncionario = new TelaFuncionario();
+        this.telaCadastrarFuncionario = new TelaCadastrarFuncionario();
     }
     
     //Metodos:
     /**
      * Chama inica a GUI dos Funcionarios.
      */
-    public void iniciarTela () {
-//        this.telaFuncionario.iniciar();
-    }
+//    public void iniciarTela () {
+////        this.telaFuncionario.iniciar();
+//    }
     
     /**
      * Confere se os inputs de dados estao corretos, se nao estiver, joga uma excecao.
@@ -197,6 +204,23 @@ public class ControladorFuncionario {
 //    public TelaFuncionario getTelaFuncionario () {
 //        return this.telaFuncionario;
 //    }
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public TelaFuncionario getTela() {
+        return this.telaFuncionario;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public TelaCadastrarFuncionario getTelaCadastrarFuncionario() {
+        return telaCadastrarFuncionario;
+    }
     
     public Collection<Funcionario> getFuncionarios () {
         return this.mapeador.getFuncionarios();

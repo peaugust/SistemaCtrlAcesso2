@@ -16,28 +16,28 @@ import javax.swing.WindowConstants;
  *
  * @author Joao Vitor Venancio
  */
-public class TelaFuncionario extends JFrame {
+public class TelaControladorGeral extends JFrame {
     //Atributos:
-    private JButton botaoCadastrar;
-    private JButton botaoRemover;
-    private JButton botaoListar;
-    private JButton botaoModificar;
+    private JButton botaoCargos;
+    private JButton botaoFuncionarios;
+    private JButton botaoRegistros;
+    private JButton botaoPorta;
     private JButton botaoVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
     
     
     //Construtor:
-    public TelaFuncionario () {
-        //Iniciar o ActionListener (Gerenciador De Botoes):
+    public TelaControladorGeral () {
+        //Instanciar o ActionListener:
         this.gerenciadorBotoes = new GerenciadorBotoes();
         
         //Metodo para configurar a GUI:
         this.definirGUI();
         
         //Mudar o titula da minha Frame:
-        this.setTitle("Gerenciar Funcionarios:");
+        this.setTitle("Sistema de Controle de Acesso V.2:");
         //Quando clicado no X na Frame, não acontece nada:
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //Definir o tamanho da Janela(Herdado de Window):
         this.setSize(600, 600);
         //Definir que a Janela vai ser criada no centro da tela:
@@ -58,7 +58,7 @@ public class TelaFuncionario extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
         
         //Definir o bota de Cadastrar:
-        this.botaoCadastrar = new JButton("Cadastrar um Usuário");
+        this.botaoCargos = new JButton("Gerenciar Cargos");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -66,23 +66,25 @@ public class TelaFuncionario extends JFrame {
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o ActionListenre ao botao:
-        this.botaoCadastrar.addActionListener(this.gerenciadorBotoes);
+        this.botaoCargos.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
-        painel.add(this.botaoCadastrar, constraints);
+        painel.add(this.botaoCargos, constraints);
         
         //Botao de remover um usuario:
-        this.botaoRemover = new JButton("Remover um Usuário");
+        this.botaoFuncionarios = new JButton("Gerenciar Funcionarios");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 1;
         constraints.gridy = 0;
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o ActionListenre ao botao:
+        this.botaoFuncionarios.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
-        painel.add(this.botaoRemover, constraints);
+        painel.add(this.botaoFuncionarios, constraints);
         
         //Botao de Listar um usuario:
-        this.botaoListar = new JButton("Listar um Usuário");
+        this.botaoRegistros = new JButton("Gerenciar Registros");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 2;
         constraints.gridy = 0;
@@ -90,10 +92,10 @@ public class TelaFuncionario extends JFrame {
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o botao:
-        painel.add(this.botaoListar, constraints);
+        painel.add(this.botaoRegistros, constraints);
         
         //Botao de Modificar um usuario:
-        this.botaoModificar = new JButton("Modificar um Usuário");
+        this.botaoPorta = new JButton("Usar a Porta");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -102,10 +104,10 @@ public class TelaFuncionario extends JFrame {
         constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o botao:
-        painel.add(this.botaoModificar, constraints);
+        painel.add(this.botaoPorta, constraints);
         
         //Botao de sair:
-        this.botaoVoltar = new JButton("Voltar");
+        this.botaoVoltar = new JButton("Sair da Aplicação");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 2;
         constraints.gridy = 1;
@@ -137,10 +139,10 @@ public class TelaFuncionario extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
-            //Terminar de fazer:
-            if (evento.getSource().equals(botaoCadastrar)) {
-                ControladorGeral.getInstance().getControladorFuncionario().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorFuncionario().getTelaCadastrarFuncionario().iniciarTela();
+            //!!!Adicionar mais comparacoes ao adicionar mais telas!!!
+            if (evento.getSource().equals(botaoFuncionarios)) {
+                ControladorGeral.getInstance().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
             }
         }
         
