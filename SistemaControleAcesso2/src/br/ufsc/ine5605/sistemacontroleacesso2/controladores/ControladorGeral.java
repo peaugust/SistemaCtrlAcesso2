@@ -47,9 +47,9 @@ public class ControladorGeral {
     /**
      * Inicia a interface grafica de usuario principal para se interagir com o sistema.
      */
-    public void iniciarTela() {
-        this.telaControladorGreal.iniciar();
-    }
+//    public void iniciarTela() {
+//        this.telaControladorGreal.iniciar();
+//    }
     
     public ControladorFuncionario getControladorFuncionario() {
         return controladorFuncionario;
@@ -66,6 +66,10 @@ public class ControladorGeral {
 //    public ControladorRegistros getControladorRegistros() {
 //        return controladorRegistros;
 //    }
+    
+    public TelaControladorGeral getTela () {
+        return this.telaControladorGreal;
+    }
     
     /**
      * Retorna a instancia ativa da classe. Caso ela nao existir, cria uma nova.
