@@ -109,11 +109,11 @@ public class TelaFuncionario extends JFrame {
         
     }
     
-    public void iniciarTela() {
+    public void iniciar() {
         this.setVisible(true);
     }
     
-    public void desligarTela() {
+    public void desligar() {
         this.setVisible(false);
     }
 }
