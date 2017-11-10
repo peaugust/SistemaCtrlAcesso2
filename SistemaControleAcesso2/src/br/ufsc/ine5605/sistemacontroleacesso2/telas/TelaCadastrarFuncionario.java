@@ -300,10 +300,16 @@ public class TelaCadastrarFuncionario extends JFrame {
         
     }
     
+    /**
+     * Deixa a tela visivel.
+     */
     public void iniciarTela() {
         this.setVisible(true);
     }
     
+    /**
+     * Deixa a tela invisivel.
+     */
     public void desligarTela() {
         this.setVisible(false);
     }
