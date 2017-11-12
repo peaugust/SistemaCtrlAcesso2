@@ -28,19 +28,19 @@ public class RegistroDAO {
         load();
     }
     public void put(Registro registro){
-        cacheRegistros.put();
+        cacheRegistros.put(registro.getChave(), registro);
     }
    
-    public Funcionario get(Integer codigo) {
-        return cacheFuncionarios.get(codigo);
+    public Registro get(Integer chave) {
+        return cacheRegistros.get(chave);
     }
     
-    public Collection<Funcionario> getList(){
-        return cacheFuncionarios.values();
+    public Collection<Registro> getList(){
+        return cacheRegistros.values();
     }
     
-    public void remove(Funcionario funcionario){
-        cacheFuncionarios.remove(funcionario.getCodigo());
+    public void remove(Registro registro){
+        cacheRegistros.remove(registro.getChave());
     } 
     
     private void persist(){
@@ -48,7 +48,7 @@ public class RegistroDAO {
             FileOutputStream fOS = new FileOutputStream(fileName);
             ObjectOutputStream oOS = new ObjectOutputStream(fOS);
             
-            oOS.writeObject(cacheFuncionarios);
+            oOS.writeObject(cacheRegistros);
             
             oOS.flush();
             fOS.flush();
@@ -58,9 +58,9 @@ public class RegistroDAO {
          
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -70,7 +70,7 @@ public class RegistroDAO {
             FileInputStream fIS = new FileInputStream(fileName);
             ObjectInputStream oIS = new ObjectInputStream(fIS);
             
-            cacheFuncionarios = (HashMap<Integer, Funcionario>) oIS.readObject();
+            cacheRegistros = (HashMap<Integer, Registro>) oIS.readObject();
             
             oIS.close();
             fIS.close();
@@ -78,10 +78,10 @@ public class RegistroDAO {
         } catch (FileNotFoundException ex) {
             persist();
         } catch (IOException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    
+    }
 }
