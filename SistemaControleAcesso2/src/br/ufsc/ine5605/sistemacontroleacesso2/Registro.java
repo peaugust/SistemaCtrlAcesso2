@@ -23,7 +23,8 @@ public class Registro implements Serializable {
     private AcontecimentoRegistro acontecimento;
     private Calendar dataAcontecimento;
     private int numDeMatricula;
-    
+    private int chave;
+    private static int chaveBurra = -1;
     /**Construtor de Registro
      * 
      * @param acontecimento acontecimento que gerou o registro
@@ -35,6 +36,7 @@ public class Registro implements Serializable {
         this.acontecimento = acontecimento;
         this.dataAcontecimento = dataAcontecimento;
         this.numDeMatricula = numDeMatricula;
+        this.chave = Registro.geradorDeChave();
     }
     
     //Metodos
@@ -48,6 +50,15 @@ public class Registro implements Serializable {
 
     public int getNumDeMatricula() {
         return this.numDeMatricula;
+    }
+    
+    public int getChave(){
+        return this.chave;
+    }
+    
+    private static int geradorDeChave(){
+        Registro.chaveBurra++;
+        return chaveBurra;
     }
     
     
