@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufsc.ine5605.sistemacontroleacesso2.DAO;
+package br.ufsc.ine5605.sistemacontroleacesso2.mapeadores;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import java.io.FileInputStream;
@@ -21,11 +21,11 @@ import java.util.logging.Logger;
  *
  * @author PEaug
  */
-public class RegistroDAO {
+public class MapeadorRegistro {
     private HashMap<Integer, Registro> cacheRegistros = new HashMap<>();
     private final String fileName = "registros.dat";
     
-    public RegistroDAO() {
+    public MapeadorRegistro() {
         load();
     }
     public void put(Registro registro){
@@ -34,6 +34,12 @@ public class RegistroDAO {
    
     public Registro get(Integer chave) {
         return cacheRegistros.get(chave);
+    }
+    
+    public int getProximaChave(){
+        int somaProximaChave = this.getList().size();
+        somaProximaChave++;
+        return somaProximaChave;
     }
     
     public Collection<Registro> getList(){
@@ -59,9 +65,9 @@ public class RegistroDAO {
          
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MapeadorRegistro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MapeadorRegistro.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -79,9 +85,9 @@ public class RegistroDAO {
         } catch (FileNotFoundException ex) {
             persist();
         } catch (IOException ex) {
-            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MapeadorRegistro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegistroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MapeadorRegistro.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
