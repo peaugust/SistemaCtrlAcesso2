@@ -22,7 +22,7 @@ public class TelaControladorGeral extends JFrame {
     private JButton botaoFuncionarios;
     private JButton botaoRegistros;
     private JButton botaoPorta;
-    private JButton botaoVoltar;
+    private JButton botaoSair;
     private GerenciadorBotoes gerenciadorBotoes;
     
     
@@ -107,7 +107,7 @@ public class TelaControladorGeral extends JFrame {
         painel.add(this.botaoPorta, constraints);
         
         //Botao de sair:
-        this.botaoVoltar = new JButton("Sair da Aplicação");
+        this.botaoSair = new JButton("Sair da Aplicação");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 2;
         constraints.gridy = 1;
@@ -115,8 +115,10 @@ public class TelaControladorGeral extends JFrame {
         constraints.weighty = 2;
         constraints.gridwidth = 1;
         constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o ActionListener nele:
+        botaoSair.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
-        painel.add(this.botaoVoltar, constraints);
+        painel.add(this.botaoSair, constraints);
         
     }
     
@@ -143,6 +145,8 @@ public class TelaControladorGeral extends JFrame {
             if (evento.getSource().equals(botaoFuncionarios)) {
                 ControladorGeral.getInstance().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
+            } else if (evento.getSource().equals(botaoSair)) {
+                dispose();
             }
         }
         
