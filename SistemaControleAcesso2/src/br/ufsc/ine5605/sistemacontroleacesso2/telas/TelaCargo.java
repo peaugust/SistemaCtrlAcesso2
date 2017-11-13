@@ -16,28 +16,28 @@ import javax.swing.WindowConstants;
  *
  * @author Joao Vitor Venancio
  */
-public class TelaControladorGeral extends JFrame {
+public class TelaCargo extends JFrame {
     //Atributos:
-    private JButton botaoCargos;
-    private JButton botaoFuncionarios;
-    private JButton botaoRegistros;
-    private JButton botaoPorta;
-    private JButton botaoSair;
+    private JButton botaoCadastrar;
+    private JButton botaoRemover;
+    private JButton botaoListar;
+    private JButton botaoModificar;
+    private JButton botaoVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
     
     
     //Construtor:
-    public TelaControladorGeral () {
-        //Instanciar o ActionListener:
+    public TelaCargo () {
+        //Iniciar o ActionListener (Gerenciador De Botoes):
         this.gerenciadorBotoes = new GerenciadorBotoes();
         
         //Metodo para configurar a GUI:
         this.definirGUI();
         
         //Mudar o titula da minha Frame:
-        this.setTitle("Sistema de Controle de Acesso V.2:");
+        this.setTitle("Gerenciar Cargo:");
         //Quando clicado no X na Frame, não acontece nada:
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         //Definir o tamanho da Janela(Herdado de Window):
         this.setSize(600, 600);
         //Definir que a Janela vai ser criada no centro da tela:
@@ -58,7 +58,7 @@ public class TelaControladorGeral extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
         
         //Definir o bota de Cadastrar:
-        this.botaoCargos = new JButton("Gerenciar Cargos");
+        this.botaoCadastrar = new JButton("Cadastrar um Cargo");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -66,25 +66,25 @@ public class TelaControladorGeral extends JFrame {
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o ActionListenre ao botao:
-        this.botaoCargos.addActionListener(this.gerenciadorBotoes);
+        this.botaoCadastrar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
-        painel.add(this.botaoCargos, constraints);
+        painel.add(this.botaoCadastrar, constraints);
         
         //Botao de remover um usuario:
-        this.botaoFuncionarios = new JButton("Gerenciar Funcionarios");
+        this.botaoRemover = new JButton("Remover um Cargo");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 1;
         constraints.gridy = 0;
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
-        //Adicionar o ActionListenre ao botao:
-        this.botaoFuncionarios.addActionListener(this.gerenciadorBotoes);
+        //Adicionar o ActionListener ao botao:
+        this.botaoRemover.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
-        painel.add(this.botaoFuncionarios, constraints);
+        painel.add(this.botaoRemover, constraints);
         
         //Botao de Listar um usuario:
-        this.botaoRegistros = new JButton("Gerenciar Registros");
+        this.botaoListar = new JButton("Listar um Cargo");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 2;
         constraints.gridy = 0;
@@ -92,10 +92,10 @@ public class TelaControladorGeral extends JFrame {
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o botao:
-        painel.add(this.botaoRegistros, constraints);
+        painel.add(this.botaoListar, constraints);
         
         //Botao de Modificar um usuario:
-        this.botaoPorta = new JButton("Usar a Porta");
+        this.botaoModificar = new JButton("Modificar um Cargo");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -104,10 +104,10 @@ public class TelaControladorGeral extends JFrame {
         constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o botao:
-        painel.add(this.botaoPorta, constraints);
+        painel.add(this.botaoModificar, constraints);
         
         //Botao de sair:
-        this.botaoSair = new JButton("Sair da Aplicação");
+        this.botaoVoltar = new JButton("Voltar");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 2;
         constraints.gridy = 1;
@@ -115,13 +115,13 @@ public class TelaControladorGeral extends JFrame {
         constraints.weighty = 2;
         constraints.gridwidth = 1;
         constraints.fill = GridBagConstraints.BOTH;
-        //Adicionar o ActionListener nele:
-        botaoSair.addActionListener(this.gerenciadorBotoes);
+        //Adicoinar um actionListener ao botao:
+        this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
-        painel.add(this.botaoSair, constraints);
+        painel.add(this.botaoVoltar, constraints);
         
     }
-    
+
     public void iniciarTela() {
         this.setVisible(true);
     }
@@ -141,15 +141,18 @@ public class TelaControladorGeral extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
-            //!!!Adicionar mais comparacoes ao adicionar mais telas!!!
-            if (evento.getSource().equals(botaoFuncionarios)) {
-                ControladorGeral.getInstance().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
-            }else if(evento.getSource().equals(botaoCargos)) {
-                ControladorGeral.getInstance().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorCargo().getTela().iniciarTela();    
-            } else if (evento.getSource().equals(botaoSair)) {
-                System.exit(0);
+            //Terminar de fazer:
+            if (evento.getSource().equals(botaoCadastrar)) {
+                ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorCargo().getTelaCadastrarCargo().iniciarTela();
+            } else if (evento.getSource().equals(botaoRemover)) {
+                ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorCargo().getTelaRemoverCargo().iniciarTela();
+            } else if (evento.getSource().equals(botaoVoltar)) {
+                //Desliga a tela atual:
+                desligarTela();
+                //Vai para o ControladorGeral:
+                ControladorGeral.getInstance().getTela().iniciarTela();
             }
         }
         
