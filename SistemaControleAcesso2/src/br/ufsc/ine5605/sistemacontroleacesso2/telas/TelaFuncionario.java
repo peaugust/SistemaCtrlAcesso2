@@ -78,6 +78,8 @@ public class TelaFuncionario extends JFrame {
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o ActionListener ao botao:
+        this.botaoRemover.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoRemover, constraints);
         
@@ -143,6 +145,9 @@ public class TelaFuncionario extends JFrame {
             if (evento.getSource().equals(botaoCadastrar)) {
                 ControladorGeral.getInstance().getControladorFuncionario().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorFuncionario().getTelaCadastrarFuncionario().iniciarTela();
+            } else if (evento.getSource().equals(botaoRemover)) {
+                ControladorGeral.getInstance().getControladorFuncionario().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorFuncionario().getTelaRemoverFuncionario().iniciarTela();
             } else if (evento.getSource().equals(botaoVoltar)) {
                 //Desliga a tela atual:
                 desligarTela();
