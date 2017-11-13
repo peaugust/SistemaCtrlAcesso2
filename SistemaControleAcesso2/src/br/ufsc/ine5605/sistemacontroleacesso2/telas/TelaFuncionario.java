@@ -58,7 +58,7 @@ public class TelaFuncionario extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
         
         //Definir o bota de Cadastrar:
-        this.botaoCadastrar = new JButton("Cadastrar um Usuário");
+        this.botaoCadastrar = new JButton("Cadastrar um Funcionário");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -71,7 +71,7 @@ public class TelaFuncionario extends JFrame {
         painel.add(this.botaoCadastrar, constraints);
         
         //Botao de remover um usuario:
-        this.botaoRemover = new JButton("Remover um Usuário");
+        this.botaoRemover = new JButton("Remover um Funcionário");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 1;
         constraints.gridy = 0;
@@ -84,7 +84,7 @@ public class TelaFuncionario extends JFrame {
         painel.add(this.botaoRemover, constraints);
         
         //Botao de Listar um usuario:
-        this.botaoListar = new JButton("Listar um Usuário");
+        this.botaoListar = new JButton("Listar um Funcionário");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 2;
         constraints.gridy = 0;
@@ -95,7 +95,7 @@ public class TelaFuncionario extends JFrame {
         painel.add(this.botaoListar, constraints);
         
         //Botao de Modificar um usuario:
-        this.botaoModificar = new JButton("Modificar um Usuário");
+        this.botaoModificar = new JButton("Modificar um Funcionário");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 1;
