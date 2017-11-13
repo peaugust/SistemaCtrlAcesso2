@@ -5,6 +5,7 @@ import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCadastrarFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaRemoverFuncionario;
 import java.util.Calendar;
 import java.util.Collection;
 
@@ -34,6 +35,11 @@ public class ControladorFuncionario {
      */
     private TelaCadastrarFuncionario telaCadastrarFuncionario;
     
+    /**
+     * Atributo com a GUI de remover um funcionario.
+     */
+    private TelaRemoverFuncionario telaRemoverFuncionario;
+    
     //Construtor:
     /**
      * Construtor da classe. Recebe o owner como entrada e cria um novo mapeador
@@ -46,6 +52,7 @@ public class ControladorFuncionario {
         this.mapeador = new MapeadorFuncionario ();
         this.telaFuncionario = new TelaFuncionario();
         this.telaCadastrarFuncionario = new TelaCadastrarFuncionario();
+        this.telaRemoverFuncionario = new TelaRemoverFuncionario();
     }
     
     //Metodos:
@@ -220,6 +227,14 @@ public class ControladorFuncionario {
      */
     public TelaCadastrarFuncionario getTelaCadastrarFuncionario() {
         return telaCadastrarFuncionario;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public TelaRemoverFuncionario getTelaRemoverFuncionario() {
+        return telaRemoverFuncionario;
     }
     
     public Collection<Funcionario> getFuncionarios () {
