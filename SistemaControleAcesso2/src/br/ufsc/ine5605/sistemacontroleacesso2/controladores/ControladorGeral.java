@@ -35,7 +35,7 @@ public class ControladorGeral {
      */
     public ControladorGeral() {
         this.telaControladorGreal = new TelaControladorGeral();
-//        this.controladorCargo = new ControladorCargo(this);
+        this.controladorCargo = new ControladorCargo(this);
         this.controladorFuncionario = new ControladorFuncionario(this);
 //        this.controladorPortaFinanceiro = new ControladorPortaFinanceiro(this);
         this.controladorRegistros = new ControladorRegistros(this);
@@ -52,7 +52,7 @@ public class ControladorGeral {
 //        this.telaControladorGreal.iniciar();
 //    }
     public ControladorFuncionario getControladorFuncionario() {
-        return controladorFuncionario;
+        return this.controladorFuncionario;
     }
 
     public ControladorCargo getControladorCargo() {
