@@ -5,6 +5,7 @@ import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCadastrarFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaModificarFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaRemoverFuncionario;
 import java.util.Calendar;
 import java.util.Collection;
@@ -40,6 +41,11 @@ public class ControladorFuncionario {
      */
     private TelaRemoverFuncionario telaRemoverFuncionario;
     
+    /**
+     * Atributo cam a GUI para modificar um funcionario.
+     */
+    private TelaModificarFuncionario telaModificarFuncionario;
+    
     //Construtor:
     /**
      * Construtor da classe. Recebe o owner como entrada e cria um novo mapeador
@@ -53,6 +59,7 @@ public class ControladorFuncionario {
         this.telaFuncionario = new TelaFuncionario();
         this.telaCadastrarFuncionario = new TelaCadastrarFuncionario();
         this.telaRemoverFuncionario = new TelaRemoverFuncionario();
+        this.telaModificarFuncionario = new TelaModificarFuncionario();
     }
     
     //Metodos:
@@ -106,11 +113,11 @@ public class ControladorFuncionario {
             for (Funcionario funcionarioLista : this.mapeador.getFuncionarios()) {
                 funcionarioLista = (Funcionario) funcionarioLista;
                 if (funcionarioLista.getNumeroDeMatricula() == novoFuncionario.getNumeroDeMatricula() ) {
-                    throw new IllegalArgumentException("Numero de matricula jah registrado");
+                    throw new IllegalArgumentException("Numero de matricula já registrado");
                 } else {
                     //Verificar se jah existe o mesmo nome:
                     if (funcionarioLista.getNome().equals(novoFuncionario.getNome()) ) {
-                        throw new IllegalArgumentException("Nome de funcionario jah cadastrado");
+                        throw new IllegalArgumentException("Nome de funcionario já cadastrado");
                     }
                 }
             }
@@ -222,6 +229,7 @@ public class ControladorFuncionario {
 
     /**
      * 
+     * 
      * @return 
      */
     public TelaCadastrarFuncionario getTelaCadastrarFuncionario() {
@@ -230,10 +238,20 @@ public class ControladorFuncionario {
 
     /**
      * 
+     * 
      * @return 
      */
     public TelaRemoverFuncionario getTelaRemoverFuncionario() {
         return telaRemoverFuncionario;
+    }
+
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public TelaModificarFuncionario getTelaModificarFuncionario() {
+        return telaModificarFuncionario;
     }
     
     public Collection<Funcionario> getFuncionarios () {
