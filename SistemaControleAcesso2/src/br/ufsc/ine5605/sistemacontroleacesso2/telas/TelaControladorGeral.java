@@ -145,6 +145,9 @@ public class TelaControladorGeral extends JFrame {
             if (evento.getSource().equals(botaoFuncionarios)) {
                 ControladorGeral.getInstance().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
+//            }else if(evento.getSource().equals(botaoCargos)) {
+//                ControladorGeral.getInstance().getTela().desligarTela();
+//                ControladorGeral.getInstance().getControladorCargo().getTela().iniciarTela();    
             } else if (evento.getSource().equals(botaoSair)) {
                 System.exit(0);
             }

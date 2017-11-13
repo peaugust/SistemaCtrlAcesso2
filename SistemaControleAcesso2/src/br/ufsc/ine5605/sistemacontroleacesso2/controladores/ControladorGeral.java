@@ -23,7 +23,7 @@ public class ControladorGeral {
      * Classe com o Controlador de Funcionarios.
      */
     private ControladorFuncionario controladorFuncionario;
-//    private ControladorCargo controladorCargo;
+    private ControladorCargo controladorCargo;
 //    private ControladorPortaFinanceiro controladorPortaFinanceiro;
 //    private ControladorRegistros controladorRegistros;
 //    private TelaControladorGeral telaControladorGeral;
@@ -55,9 +55,9 @@ public class ControladorGeral {
         return controladorFuncionario;
     }
 
-//    public ControladorCargo getControladorCargo() {
-//        return controladorCargo;
-//    }
+    public ControladorCargo getControladorCargo() {
+        return this.controladorCargo;
+    }
 //
 //    public ControladorPortaFinanceiro getControladorPortaFinanceiro() {
 //        return controladorPortaFinanceiro;
