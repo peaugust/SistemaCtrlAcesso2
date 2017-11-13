@@ -3,10 +3,10 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
-import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCadastrarFuncionario;
-import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaFuncionario;
-import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaModificarFuncionario;
-import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaRemoverFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaCadastrarFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaModificarFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaRemoverFuncionario;
 import java.util.Calendar;
 import java.util.Collection;
 

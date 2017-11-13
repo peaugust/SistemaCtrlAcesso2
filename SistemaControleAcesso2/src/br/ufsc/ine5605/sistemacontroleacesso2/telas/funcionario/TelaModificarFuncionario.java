@@ -1,4 +1,4 @@
-package br.ufsc.ine5605.sistemacontroleacesso2.telas;
+package br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
