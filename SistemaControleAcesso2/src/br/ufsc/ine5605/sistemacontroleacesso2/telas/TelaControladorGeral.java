@@ -146,7 +146,7 @@ public class TelaControladorGeral extends JFrame {
                 ControladorGeral.getInstance().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
             } else if (evento.getSource().equals(botaoSair)) {
-                dispose();
+                System.exit(0);
             }
         }
         
