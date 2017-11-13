@@ -5,9 +5,10 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 
-import br.ufsc.ine5605.sistemacontroleacesso2.DAO.RegistroDAO;
+import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaControladorRegistros;
 import java.util.Collection;
 
 
@@ -31,17 +32,20 @@ public class ControladorRegistros {
     /**
      * ArrayList que armazena os registros gerados
      */
-    private RegistroDAO registroDAO;
+    private MapeadorRegistro mapeadorRegistro;
 
     /**
      * @param controladorGeral ControladorGeral - Controlador Geral responsável
      * por esse Controlador
      */
+    
+    private TelaControladorRegistros telaControladorRegistros;
+    
     //Construtor
     public ControladorRegistros(ControladorGeral controladorGeral) {
         this.controladorGeral = controladorGeral;
-        //this.telaRegistro = new TelaRegistro(this);
-        this.registroDAO = new RegistroDAO();
+        this.mapeadorRegistro = new MapeadorRegistro();
+        this.telaControladorRegistros = new TelaControladorRegistros();
     }
 
     /**
@@ -101,14 +105,14 @@ public class ControladorRegistros {
     //}
 
     /**
-     * Método que adiciona um novo Registro no HashMap do RegistroDAO
+     * Método que adiciona um novo Registro no HashMap do MapeadorRegistro
      *
      * @param envelope - Registro a ser adicionado
      */
     public void adicionarRegistro(EnvelopeRegistro envelope) {
         if(envelope.acontecimento != null){
-            Registro novoRegistro = new Registro(envelope.acontecimento, envelope.dataAcontecimento, envelope.numDeMatricula);
-            this.registroDAO.put(novoRegistro);
+            Registro novoRegistro = new Registro(envelope.acontecimento, envelope.dataAcontecimento, envelope.numDeMatricula, envelope.chave);
+            this.mapeadorRegistro.put(novoRegistro);
         } 
     }
 
@@ -119,7 +123,7 @@ public class ControladorRegistros {
      * do sistema
      */
     public Collection<Registro> getArrayDeRegistros() {
-        return this.registroDAO.getList();
+        return this.mapeadorRegistro.getList();
     }
 
     /**
@@ -132,4 +136,10 @@ public class ControladorRegistros {
     public ControladorGeral getControladorGeral() {
         return controladorGeral;
     }
+    
+    public TelaControladorRegistros getTela(){
+        return this.telaControladorRegistros;
+    }
+    
+    
 }
