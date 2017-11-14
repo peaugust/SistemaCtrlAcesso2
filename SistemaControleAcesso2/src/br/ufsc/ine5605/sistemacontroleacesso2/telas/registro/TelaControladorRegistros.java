@@ -1,4 +1,4 @@
-package br.ufsc.ine5605.sistemacontroleacesso2.telas;
+package br.ufsc.ine5605.sistemacontroleacesso2.telas.registro;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import java.awt.Component;
