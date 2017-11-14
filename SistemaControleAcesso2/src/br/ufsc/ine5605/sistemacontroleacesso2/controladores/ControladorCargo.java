@@ -5,19 +5,18 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 
-import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargo;
-import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargoComAcesso;
-
-import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.ICargo;
-import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCargo;
-
-import java.util.ArrayList;
-
 import br.ufsc.ine5605.sistemacontroleacesso2.Cargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.CargoComAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.CargoSemAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.Gerente;
+import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargoComAcesso;
+import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.ICargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCadastrarCargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaRemoverCargo;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
@@ -30,6 +29,8 @@ public class ControladorCargo {
     private TelaCargo telaCargo;
     private ArrayList<Cargo> listaCargo;
     private ControladorGeral controladorGeral;
+    private TelaCadastrarCargo TelaCadastrarCargo;
+    private TelaRemoverCargo TelaRemoverCargo;
 
     /**
      *
@@ -38,15 +39,14 @@ public class ControladorCargo {
     public ControladorCargo(ControladorGeral controladorGeral) {
         this.controladorGeral = controladorGeral;
         this.listaCargo = new ArrayList<Cargo>();
-        this.telaCargo = new TelaCargo(this);
+        this.telaCargo = new TelaCargo();
+        this.TelaCadastrarCargo= new TelaCadastrarCargo();
+        this.TelaRemoverCargo= new TelaRemoverCargo();
     }
 
     /**
      *
      */
-    public void iniciarTela() {
-        this.telaCargo.iniciarTela();
-    }
 
     /**
      * Método que adiciona cargo Gerente ou CargoSemAcesso
@@ -236,5 +236,13 @@ public class ControladorCargo {
         }
 
         return null;
+    }
+
+    public TelaCadastrarCargo getTelaCadastrarCargo() {
+        return TelaCadastrarCargo;
+    }
+
+    public TelaRemoverCargo getTelaRemoverCargo() {
+        return TelaRemoverCargo;
     }
 }
