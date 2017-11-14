@@ -8,9 +8,13 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
+<<<<<<< HEAD
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaBuscaAcontecimento;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaBuscaMatricula;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaControladorRegistros;
+=======
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaControladorRegistros;
+>>>>>>> 3c375f069e80d397e218878ee98e880582bfb747
 import java.util.Collection;
 
 
