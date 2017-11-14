@@ -62,7 +62,7 @@ public class TelaCadastrarCargo extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
         
         //Definir o bota de Cadastrar:
-        this.botaoCargoGerente = new JButton("Cadastrar um Cargo");
+        this.botaoCargoGerente = new JButton("Gerente");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -75,7 +75,7 @@ public class TelaCadastrarCargo extends JFrame {
         painel.add(this.botaoCargoGerente, constraints);
         
         //Botao de remover um usuario:
-        this.botaoCargoComAcesso = new JButton("Remover um Cargo");
+        this.botaoCargoComAcesso = new JButton("Cargo com acesso");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 1;
         constraints.gridy = 0;
@@ -87,25 +87,14 @@ public class TelaCadastrarCargo extends JFrame {
         //Adicionar o botao:
         painel.add(this.botaoCargoComAcesso, constraints);
         
-        //Botao de Listar um usuario:
-        this.botaoCargoSemAcesso = new JButton("Listar um Cargo");
-        //Definir suas especificacoes dentro do GridBagLayout:
-        constraints.gridx = 2;
-        constraints.gridy = 0;
-        constraints.weightx = 1;
-        constraints.weighty = 2;
-        constraints.fill = GridBagConstraints.BOTH;
-        //Adicionar o botao:
-        painel.add(this.botaoCargoSemAcesso, constraints);
-        
         //Botao de Modificar um usuario:
-        this.botaoCargoSemAcesso = new JButton("Modificar um Cargo");
+        this.botaoCargoSemAcesso = new JButton("Cargo sem Acesso");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.weightx = 1;
         constraints.weighty = 2;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.gridwidth = 1; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o botao:
         painel.add(this.botaoCargoSemAcesso, constraints);
@@ -113,7 +102,7 @@ public class TelaCadastrarCargo extends JFrame {
         //Botao de sair:
         this.botaoVoltar = new JButton("Voltar");
         //Definir suas especificacoes dentro do GridBagLayout:
-        constraints.gridx = 2;
+        constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.weightx = 1;
         constraints.weighty = 2;

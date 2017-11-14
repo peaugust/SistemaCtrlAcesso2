@@ -47,6 +47,9 @@ public class ControladorCargo {
         this.telaCargo = new TelaCargo();
         this.TelaCadastrarCargo= new TelaCadastrarCargo();
         this.TelaRemoverCargo= new TelaRemoverCargo();
+        this.TelaCargoGerente= new TelaCargoGerente();
+        this.TelaCargoComAcesso= new TelaCargoComAcesso();
+        this.TelaCargoSemAcesso= new TelaCargoSemAcesso();
     }
 
     /**
