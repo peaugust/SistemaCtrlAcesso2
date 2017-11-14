@@ -5,7 +5,8 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2;
 
-import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorRegistro;
+
+import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.IRegistro;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -13,7 +14,7 @@ import java.util.Calendar;
  *
  * @author PEaug
  */
-public class Registro implements Serializable {
+public class Registro implements Serializable, IRegistro {
     //Atributos
         /**
      * Atributo para indicar a versao que foi feita essa classe, caso ser feita
@@ -40,14 +41,17 @@ public class Registro implements Serializable {
     }
     
     //Metodos
+    @Override
     public AcontecimentoRegistro getAcontecimento() {
         return this.acontecimento;
     }
 
+    @Override
     public Calendar getDataAcontecimento() {
         return this.dataAcontecimento;
     }
 
+    @Override
     public int getNumDeMatricula() {
         return this.numDeMatricula;
     }

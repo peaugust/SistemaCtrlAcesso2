@@ -8,6 +8,8 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaBuscaAcontecimento;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaBuscaMatricula;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaControladorRegistros;
 import java.util.Collection;
 
@@ -41,11 +43,17 @@ public class ControladorRegistros {
     
     private TelaControladorRegistros telaControladorRegistros;
     
+    private TelaBuscaMatricula telaBuscaMatricula;
+    
+    private TelaBuscaAcontecimento telaBuscaAcontecimento;
+    
     //Construtor
     public ControladorRegistros(ControladorGeral controladorGeral) {
         this.controladorGeral = controladorGeral;
         this.mapeadorRegistro = new MapeadorRegistro();
         this.telaControladorRegistros = new TelaControladorRegistros();
+        this.telaBuscaMatricula = new TelaBuscaMatricula();
+        this.telaBuscaAcontecimento = new TelaBuscaAcontecimento();
     }
 
     /**
@@ -139,6 +147,14 @@ public class ControladorRegistros {
     
     public TelaControladorRegistros getTela(){
         return this.telaControladorRegistros;
+    }
+    
+    public TelaBuscaMatricula getTelaBuscaMatricula(){
+        return this.telaBuscaMatricula;
+    }
+    
+    public TelaBuscaAcontecimento getTelaBuscaAcontecimento(){
+        return this.telaBuscaAcontecimento;
     }
     
     

@@ -144,10 +144,10 @@ public class TelaControladorRegistros extends JFrame {
             //Terminar de fazer:
             if (evento.getSource().equals(botaoBuscaMatricula)) {
                 ControladorGeral.getInstance().getControladorRegistros().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorRegistros();
+                ControladorGeral.getInstance().getControladorRegistros().getTelaBuscaMatricula();
             } else if (evento.getSource().equals(botaoBuscaAcontecimento)) {
                 ControladorGeral.getInstance().getControladorRegistros().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorRegistros();
+                ControladorGeral.getInstance().getControladorRegistros().getTelaBuscaAcontecimento();
             } else if (evento.getSource().equals(botaoVoltar)) {
                 //Desliga a tela atual:
                 desligarTela();
