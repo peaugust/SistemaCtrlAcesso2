@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.ufsc.ine5605.sistemacontroleacesso2.telas;
+package br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
@@ -25,7 +25,7 @@ import javax.swing.WindowConstants;
  *
  * @author 03851937007
  */
-public class TelaCargoGerente extends JFrame {
+public class TelaCargoComAcesso extends JFrame {
     private JLabel labelMatricula;
     private JTextField campoMatricula;
     private JLabel labelNome;
@@ -47,7 +47,7 @@ public class TelaCargoGerente extends JFrame {
     private GerenciadorBotoes gerenciadorBotoes;
             
     //Construtor:
-    public TelaCargoGerente () {
+    public TelaCargoComAcesso () {
         //Iniciarlizar o AcitionListener:
         this.gerenciadorBotoes = new GerenciadorBotoes();
         
