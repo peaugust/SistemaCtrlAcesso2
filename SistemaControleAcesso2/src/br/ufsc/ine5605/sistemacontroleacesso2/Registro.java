@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorRegistro;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -24,7 +25,6 @@ public class Registro implements Serializable {
     private Calendar dataAcontecimento;
     private int numDeMatricula;
     private int chave;
-    private static int chaveBurra = -1;
     /**Construtor de Registro
      * 
      * @param acontecimento acontecimento que gerou o registro
@@ -32,11 +32,11 @@ public class Registro implements Serializable {
      * @param numDeMatricula número de matrícula do funcionário que gerou o 
      * registro
      */
-    public Registro(AcontecimentoRegistro acontecimento, Calendar dataAcontecimento, int numDeMatricula ) {
+    public Registro(AcontecimentoRegistro acontecimento, Calendar dataAcontecimento, int numDeMatricula, int chave) {
         this.acontecimento = acontecimento;
         this.dataAcontecimento = dataAcontecimento;
         this.numDeMatricula = numDeMatricula;
-        this.chave = Registro.geradorDeChave();
+        this.chave = chave;
     }
     
     //Metodos
@@ -54,11 +54,6 @@ public class Registro implements Serializable {
     
     public int getChave(){
         return this.chave;
-    }
-    
-    private static int geradorDeChave(){
-        Registro.chaveBurra++;
-        return chaveBurra;
     }
     
     
