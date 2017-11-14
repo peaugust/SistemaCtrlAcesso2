@@ -15,6 +15,9 @@ import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargoComAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.ICargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCadastrarCargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCargoComAcesso;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCargoGerente;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaCargoSemAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaRemoverCargo;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,7 +34,9 @@ public class ControladorCargo {
     private ControladorGeral controladorGeral;
     private TelaCadastrarCargo TelaCadastrarCargo;
     private TelaRemoverCargo TelaRemoverCargo;
-
+    private TelaCargoGerente TelaCargoGerente;
+    private TelaCargoComAcesso TelaCargoComAcesso;
+    private TelaCargoSemAcesso TelaCargoSemAcesso;
     /**
      *
      * @param controladorGeral
@@ -244,5 +249,17 @@ public class ControladorCargo {
 
     public TelaRemoverCargo getTelaRemoverCargo() {
         return TelaRemoverCargo;
+    }
+
+    public TelaCargoGerente getTelaCargoGerente() {
+        return TelaCargoGerente;
+    }
+
+    public TelaCargoComAcesso getTelaCargoComAcesso() {
+        return TelaCargoComAcesso;
+    }
+
+    public TelaCargoSemAcesso getTelaCargoSemAcesso() {
+        return TelaCargoSemAcesso;
     }
 }
