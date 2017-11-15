@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2.telas.registro;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -20,21 +22,22 @@ import javax.swing.WindowConstants;
  *
  * @author PEaug
  */
-public class TelaBuscaMatricula extends JFrame{
+public class TelaBuscaMatricula extends JFrame {
+
     private GerenciadorBotoes gerenciadorBotoes;
     private JLabel labelMatricula;
     private JTextField campoMatricula;
     private JButton botaoBuscar;
     private JButton botaoVoltar;
-              
+
     //Construtor:
-    public TelaBuscaMatricula () {
+    public TelaBuscaMatricula() {
         //Iniciarlizar o AcitionListener:
         this.gerenciadorBotoes = new GerenciadorBotoes();
-        
+
         //Metodo para configurar a GUI:
         this.definirGUI();
-        
+
         //Mudar o titula da minha Frame:
         this.setTitle("Busacr Usando Matrícula:");
         //Quando clicado no X na Frame, não Matricula:
@@ -47,21 +50,21 @@ public class TelaBuscaMatricula extends JFrame{
         this.setResizable(true);
         //Deixar que seja visto:
         this.setVisible(false);
-        
+
     }
-    
+
     //Metodos:
     /**
-     * Metodo que eh chamado para fazer todas as configuracoes (disposicoes de botoes e textos)
-     * dentro da GUI.
+     * Metodo que eh chamado para fazer todas as configuracoes (disposicoes de
+     * botoes e textos) dentro da GUI.
      */
-    private void definirGUI () {
-        JPanel painel = new JPanel (); //Um novo Container para o meu Frame (JFrame)
-        //this.getContentPane().add(painel); //Pego o Container do meu JFrame e adiciono o Container do java swing (JPanel). Mexo agora apenas com o Container (JPane) do Swing
+    private void definirGUI() {
+        JPanel painel = new JPanel(); //Um novo Container para o meu Frame (JFrame)
+        this.getContentPane().add(painel); //Pego o Container do meu JFrame e adiciono o Container do java swing (JPanel). Mexo agora apenas com o Container (JPane) do Swing
         painel.setLayout(new GridBagLayout()); //Defino o Laytou para o GridBag
         //Criar as especificacoes para o meu GridBag:
         GridBagConstraints constraints = new GridBagConstraints();
-        
+
         this.labelMatricula = new JLabel("Insira o número de matrícula:    ");
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -70,7 +73,7 @@ public class TelaBuscaMatricula extends JFrame{
         constraints.anchor = GridBagConstraints.LINE_END;
         constraints.fill = GridBagConstraints.BOTH;
         painel.add(this.labelMatricula, constraints);
-        
+
         this.campoMatricula = new JTextField(15);
         constraints.gridx = 1;
         constraints.gridy = 0;
@@ -79,8 +82,8 @@ public class TelaBuscaMatricula extends JFrame{
         constraints.anchor = GridBagConstraints.LINE_START;
         constraints.fill = GridBagConstraints.BOTH;
         painel.add(this.campoMatricula, constraints);
-        
-        this.botaoBuscar = new JButton ("Buscar");
+
+        this.botaoBuscar = new JButton("Buscar");
         //Definir o layout:
         constraints.gridx = 0;
         constraints.gridy = 9;
@@ -92,9 +95,9 @@ public class TelaBuscaMatricula extends JFrame{
         this.botaoBuscar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoBuscar, constraints);
-        
+
         //Botao para voltar:
-        this.botaoVoltar = new JButton ("Voltar");
+        this.botaoVoltar = new JButton("Voltar");
         //Definir o layout:
         constraints.gridx = 0;
         constraints.gridy = 10;
@@ -107,26 +110,56 @@ public class TelaBuscaMatricula extends JFrame{
         //Adicionar o botao:
         painel.add(this.botaoVoltar, constraints);
     }
-      /**
+
+    /**
      * Deixa a tela visivel.
      */
     public void iniciarTela() {
-       this.setVisible(true);
+        this.setVisible(true);
     }
-    
-     public void desligarTela() {
+
+    public void desligarTela() {
         this.setVisible(false);
     }
 
-    class GerenciadorBotoes implements ActionListener{
-
-        public GerenciadorBotoes() {
-        }
+    //TODO: Implementar a Listagem
+    public class GerenciadorBotoes implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent evento) {
+            if (evento.getSource().equals(botaoBuscar)) {
+
+                try {
+                    //Chama o metodo de adicionar funcionario (joga execoes):
+                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByMatricula(Integer.parseInt(campoMatricula.getText()));
+                    //Trocar para a tela anterior:
+                    desligarTela();
+                    ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
+                    //Tirar os inputs anteriores do buffer:
+                    campoMatricula.setText("");
+
+                } catch (IllegalArgumentException execao) { //Vai criar um JOptionPane avisando qual foi o erro de Input:
+
+                    if (execao.getMessage().equals("For input string: \"\"")) {
+
+                        JOptionPane.showMessageDialog(null, "Campo em Branco é inválido.");
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, execao.getMessage());
+
+                    }
+
+                }
+
+            } else if (evento.getSource().equals(botaoVoltar)) {
+
+                desligarTela();
+                ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
+                //Tirar os inputs anteriores do buffer:
+                campoMatricula.setText("");
+
+            }
         }
     }
-       
 }
