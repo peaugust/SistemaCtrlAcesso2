@@ -91,6 +91,7 @@ public class TelaControladorGeral extends JFrame {
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
+        this.botaoRegistros.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoRegistros, constraints);
         
@@ -148,7 +149,13 @@ public class TelaControladorGeral extends JFrame {
             }else if(evento.getSource().equals(botaoCargos)) {
                 ControladorGeral.getInstance().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorCargo().getTela().iniciarTela();    
-            } else if (evento.getSource().equals(botaoSair)) {
+            }
+            else if(evento.getSource().equals(botaoRegistros)) {
+                System.out.println("CHEGUEI AQUI");
+                ControladorGeral.getInstance().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();    
+            } 
+            else if (evento.getSource().equals(botaoSair)) {
                 System.exit(0);
             }
         }
