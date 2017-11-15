@@ -10,6 +10,7 @@ import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaBuscaAcontecimento;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaBuscaMatricula;
+
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaControladorRegistros;
 import java.util.Collection;
 
@@ -57,7 +58,7 @@ public class ControladorRegistros {
     /**
      * Método responsável pela busca de registros com um respectivo Enum
      *
-     * @param indiceDoAcontecimento int - Índice do Enum que se deseja usar para
+     * @param indiceDoAcontecimento int - �ndice do Enum que se deseja usar para
      * a busca
      * @return registrosEncontrados ArrayList - ArrayList com os registros
      * selecionados
