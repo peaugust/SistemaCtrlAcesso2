@@ -8,6 +8,7 @@ package br.ufsc.ine5605.sistemacontroleacesso2.telas;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaCadastrarFuncionario;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -15,29 +16,29 @@ import javax.swing.WindowConstants;
  *
  * @author PEaug
  */
-public class TelaBuscaAcontecimento {
-    //private TelaBuscaAcontecimento.GerenciadorBotoes gerenciadorBotoes;
+public class TelaBuscaAcontecimento extends JFrame{
+    private GerenciadorBotoes gerenciadorBotoes;
             
     //Construtor:
     public TelaBuscaAcontecimento () {
         //Iniciarlizar o AcitionListener:
-        //this.gerenciadorBotoes = new TelaCadastrarFuncionario.GerenciadorBotoes();
+        this.gerenciadorBotoes = new GerenciadorBotoes();
         
         //Metodo para configurar a GUI:
         this.definirGUI();
         
         //Mudar o titula da minha Frame:
-        //this.setTitle("Cadastrar um Funcionario:");
+        this.setTitle("Busacr Usando Acontecimento:");
         //Quando clicado no X na Frame, não acontece nada:
-        //this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         //Definir o tamanho da Janela(Herdado de Window):
-        //this.setSize(600, 600);
+        this.setSize(600, 600);
         //Definir que a Janela vai ser criada no centro da tela:
-        //this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         //Se pode ser modificado o tamanho dela:
-        //this.setResizable(true);
+        this.setResizable(true);
         //Deixar que seja visto:
-        //this.setVisible(false);
+        this.setVisible(false);
         
     }
     
@@ -52,11 +53,12 @@ public class TelaBuscaAcontecimento {
         painel.setLayout(new GridBagLayout()); //Defino o Laytou para o GridBag
         //Criar as especificacoes para o meu GridBag:
         GridBagConstraints constraints = new GridBagConstraints();
+    }
       /**
      * Deixa a tela visivel.
      */
-  //  public void iniciarTela() {
-    //    this.setVisible(true);
+    public void iniciarTela() {
+       this.setVisible(true);
     }
 
     static class GerenciadorBotoes {
@@ -68,7 +70,8 @@ public class TelaBuscaAcontecimento {
     /**
      * Deixa a tela invisivel.
      */
-   // public void desligarTela() {
-     //   this.setVisible(false);
-    //}
+   public void desligarTela() {
+       this.setVisible(false);
+   }
+   
 }
