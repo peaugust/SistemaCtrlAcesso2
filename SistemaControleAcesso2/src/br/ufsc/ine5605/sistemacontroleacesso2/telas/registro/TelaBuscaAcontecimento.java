@@ -132,7 +132,7 @@ public class TelaBuscaAcontecimento extends JFrame {
 
                 try {
                     //Chama o metodo de adicionar funcionario (joga execoes):
-                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(Integer.parseInt(campoAcontecimento.getText()));
+//                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(Integer.parseInt(campoAcontecimento.getText()));
                     //Trocar para a tela anterior:
                     desligarTela();
                     ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();

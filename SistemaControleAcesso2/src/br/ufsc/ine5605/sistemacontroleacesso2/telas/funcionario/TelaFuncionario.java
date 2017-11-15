@@ -153,7 +153,6 @@ public class TelaFuncionario extends JFrame {
                 ControladorGeral.getInstance().getControladorFuncionario().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorFuncionario().getTelaRemoverFuncionario().iniciarTela();
             } else if (evento.getSource().equals(botaoListar)) {
-                ControladorGeral.getInstance().getControladorFuncionario().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorFuncionario().getTelaListarFuncionarios().iniciarTela();
             } else if (evento.getSource().equals(botaoModificar)) {
                 ControladorGeral.getInstance().getControladorFuncionario().getTela().desligarTela();

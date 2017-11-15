@@ -37,7 +37,7 @@ public class TelaListarFuncionarios extends JFrame {
         //Mudar o titula da minha Frame:
         this.setTitle("Listar os Funcionarios:");
         //Quando clicado no X na Frame, não acontece nada:
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE );
         //Definir o tamanho da Janela(Herdado de Window):
         this.setSize(600, 600);
         //Definir que a Janela vai ser criada no centro da tela:
@@ -50,9 +50,18 @@ public class TelaListarFuncionarios extends JFrame {
     //Metodos:
 
     private void definirGUI() {        
+
+
+        
+        
+    }
+    public void mostrarTabela() {
+//        DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
+//        modelo.setRowCount(0);
+        
         DefaultTableModel modelo = new DefaultTableModel(); 
         tabela = new JTable(modelo); 
-
+        
         //Criar as colunas:
         modelo.addColumn("Numero da Matricula"); 
         modelo.addColumn("Nome"); 
@@ -60,22 +69,21 @@ public class TelaListarFuncionarios extends JFrame {
         modelo.addColumn("Salario"); 
         modelo.addColumn("Cargo"); 
         modelo.addColumn("Data de Nascimento"); 
-
-        // Adicionar uma linha:
-//        for (Funcionario funcionarioLista : ControladorGeral.getInstance().getControladorFuncionario().getMapeador().getFuncionarios()) {
-//            modelo.addRow(new Object[]{ String.valueOf(funcionarioLista.getNumeroDeMatricula()), funcionarioLista.getNome(), funcionarioLista.getTelefone(),
-//            String.valueOf(funcionarioLista.getSalario()), funcionarioLista.getCargo().getNome(), funcionarioLista.getDataDeNascimento().toString()} );
-//        }
+        //Adicionar uma linha:
+        for (Funcionario funcionarioLista : ControladorGeral.getInstance().getControladorFuncionario().getMapeador().getFuncionarios()) {
+            modelo.addRow(new Object[]{ String.valueOf(funcionarioLista.getNumeroDeMatricula()), funcionarioLista.getNome(), funcionarioLista.getTelefone(),
+            String.valueOf(funcionarioLista.getSalario()), funcionarioLista.getCargo().getNome(), funcionarioLista.getDataDeNascimento().toString()} );
+        }
         
         tabela.setPreferredScrollableViewportSize(new Dimension(600,600));
         tabela.setFillsViewportHeight(true);
         
-        JScrollPane painleRolavel = new JScrollPane(tabela);
+        JScrollPane painelRolavel = new JScrollPane(tabela);
         
-        this.getContentPane().add(painleRolavel);
+        this.getContentPane().add(painelRolavel);
         
 //        JPanel painel = new JPanel(); //Um novo Container para o meu Frame (JFrame)
-//        this.getContentPane().add(painel); //Pego o Container do meu JFrame e adiciono o Container do java swing (JPanel). Mexo agora apenas com o Container (JPane) do Swing
+//        painelRolavel.add(painel); //Pego o Container do meu JFrame e adiciono o Container do java swing (JPanel). Mexo agora apenas com o Container (JPane) do Swing
 //        painel.setLayout(new GridBagLayout()); //Defino o Laytou para o GridBag
 //        //Criar as especificacoes para o meu GridBag:
 //        GridBagConstraints constraints = new GridBagConstraints();
@@ -84,7 +92,7 @@ public class TelaListarFuncionarios extends JFrame {
 //        this.botaoVoltar = new JButton("Voltar");
 //        //Definir o layout:
 //        constraints.gridx = 0;
-//        constraints.gridy = 12;
+//        constraints.gridy = 0;
 //        constraints.weightx = 0;
 //        constraints.weighty = 0;
 //        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
@@ -93,7 +101,6 @@ public class TelaListarFuncionarios extends JFrame {
 //        this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
 //        //Adicionar o botao:
 //        painel.add(this.botaoVoltar, constraints);
-        
     }
     
     /**
@@ -101,6 +108,7 @@ public class TelaListarFuncionarios extends JFrame {
      */
     public void iniciarTela() {
         this.setVisible(true);
+        this.mostrarTabela();
     }
 
     /**
