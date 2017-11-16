@@ -8,12 +8,11 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
-import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaBuscaAcontecimento;
-import br.ufsc.ine5605.sistemacontroleacesso2.telas.TelaBuscaMatricula;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaBuscaAcontecimento;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaBuscaMatricula;
+
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaControladorRegistros;
 import java.util.Collection;
-
-
 
 /**
  *
@@ -57,16 +56,9 @@ public class ControladorRegistros {
     }
 
     /**
-     * Método que inicia a tela
-     */
-    public void iniciarTela() {
-        //this.telaRegistro.iniciar();
-    }
-
-    /**
      * Método responsável pela busca de registros com um respectivo Enum
      *
-     * @param indiceDoAcontecimento int - �ndice do Enum que se deseja usar para
+     * @param indiceDoAcontecimento int - �ndice do Enum que se deseja usar para
      * a busca
      * @return registrosEncontrados ArrayList - ArrayList com os registros
      * selecionados
@@ -156,6 +148,13 @@ public class ControladorRegistros {
     public TelaBuscaAcontecimento getTelaBuscaAcontecimento(){
         return this.telaBuscaAcontecimento;
     }
-    
-    
+
+    /**
+     * Retorna o Mapeador da Classe.
+     * 
+     * @return MapeadorRegistro - O Mapeador da Classe.
+     */
+    public MapeadorRegistro getMapeadorRegistro() {
+        return mapeadorRegistro;
+    }
 }

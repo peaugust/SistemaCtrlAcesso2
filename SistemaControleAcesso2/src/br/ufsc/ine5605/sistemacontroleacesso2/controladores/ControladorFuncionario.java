@@ -5,6 +5,7 @@ import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaCadastrarFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaListarFuncionarios;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaModificarFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaRemoverFuncionario;
 import java.util.Calendar;
@@ -46,6 +47,11 @@ public class ControladorFuncionario {
      */
     private TelaModificarFuncionario telaModificarFuncionario;
     
+    /**
+     * Atributo com a GUI de listar os Funcionares presentes no sistema;
+     */
+    private TelaListarFuncionarios telaListarFuncionarios;
+    
     //Construtor:
     /**
      * Construtor da classe. Recebe o owner como entrada e cria um novo mapeador
@@ -60,6 +66,7 @@ public class ControladorFuncionario {
         this.telaCadastrarFuncionario = new TelaCadastrarFuncionario();
         this.telaRemoverFuncionario = new TelaRemoverFuncionario();
         this.telaModificarFuncionario = new TelaModificarFuncionario();
+        this.telaListarFuncionarios = new TelaListarFuncionarios();
     }
     
     //Metodos:
@@ -253,6 +260,15 @@ public class ControladorFuncionario {
     public TelaModificarFuncionario getTelaModificarFuncionario() {
         return telaModificarFuncionario;
     }
+
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public TelaListarFuncionarios getTelaListarFuncionarios() {
+        return telaListarFuncionarios;
+    }
     
     public Collection<Funcionario> getFuncionarios () {
         return this.mapeador.getFuncionarios();
@@ -261,4 +277,10 @@ public class ControladorFuncionario {
     public ControladorGeral getControladorGeral() {
         return controladorGeral;
     }
+
+    public MapeadorFuncionario getMapeador() {
+        return mapeador;
+    }
+    
+    
 }

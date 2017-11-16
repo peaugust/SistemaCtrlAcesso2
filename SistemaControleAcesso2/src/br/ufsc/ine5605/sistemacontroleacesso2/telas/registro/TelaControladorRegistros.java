@@ -20,8 +20,6 @@ public class TelaControladorRegistros extends JFrame {
     //Atributos:
     private JButton botaoBuscaMatricula;
     private JButton botaoBuscaAcontecimento;
-    private JButton botaoListar;
-    private JButton botaoModificar;
     private JButton botaoVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
 
@@ -72,7 +70,7 @@ public class TelaControladorRegistros extends JFrame {
         //Botao de remover um usuario:
         this.botaoBuscaAcontecimento = new JButton("Procurar Registro Por Acontecimento");
         //Definir suas especificacoes dentro do GridBagLayout:
-        constraints.gridx = 1;
+        constraints.gridx = 2;
         constraints.gridy = 0;
         constraints.weightx = 1;
         constraints.weighty = 2;
@@ -82,37 +80,15 @@ public class TelaControladorRegistros extends JFrame {
         //Adicionar o botao:
         painel.add(this.botaoBuscaAcontecimento, constraints);
 
-        //Botao de Listar um usuario:
-        this.botaoListar = new JButton("Listar um Funcionário");
-        //Definir suas especificacoes dentro do GridBagLayout:
-        constraints.gridx = 2;
-        constraints.gridy = 0;
-        constraints.weightx = 1;
-        constraints.weighty = 2;
-        constraints.fill = GridBagConstraints.BOTH;
-        //Adicionar o botao:
-        painel.add(this.botaoListar, constraints);
-
-        //Botao de Modificar um usuario:
-        this.botaoModificar = new JButton("Modificar um Funcionário");
-        //Definir suas especificacoes dentro do GridBagLayout:
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.weightx = 1;
-        constraints.weighty = 2;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
-        constraints.fill = GridBagConstraints.BOTH;
-        //Adicionar o botao:
-        painel.add(this.botaoModificar, constraints);
-
+    
         //Botao de sair:
         this.botaoVoltar = new JButton("Voltar");
         //Definir suas especificacoes dentro do GridBagLayout:
-        constraints.gridx = 2;
+        constraints.gridx = 0;
         constraints.gridy = 1;
-        constraints.weightx = 1;
+        constraints.weightx = 0;
         constraints.weighty = 2;
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 0;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicoinar um actionListener ao botao:
         this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
@@ -144,10 +120,10 @@ public class TelaControladorRegistros extends JFrame {
             //Terminar de fazer:
             if (evento.getSource().equals(botaoBuscaMatricula)) {
                 ControladorGeral.getInstance().getControladorRegistros().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorRegistros().getTelaBuscaMatricula();
+                ControladorGeral.getInstance().getControladorRegistros().getTelaBuscaMatricula().iniciarTela();
             } else if (evento.getSource().equals(botaoBuscaAcontecimento)) {
                 ControladorGeral.getInstance().getControladorRegistros().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorRegistros().getTelaBuscaAcontecimento();
+                ControladorGeral.getInstance().getControladorRegistros().getTelaBuscaAcontecimento().iniciarTela();
             } else if (evento.getSource().equals(botaoVoltar)) {
                 //Desliga a tela atual:
                 desligarTela();
