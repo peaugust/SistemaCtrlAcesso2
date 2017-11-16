@@ -138,12 +138,15 @@ public class TelaCadastrarCargo extends JFrame {
             if (evento.getSource().equals(botaoCargoGerente)) {
                 ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorCargo().getTelaCargoGerente().iniciarTela();
+                desligarTela();
             } else if (evento.getSource().equals(botaoCargoComAcesso)) {
                 ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorCargo().getTelaCargoComAcesso().iniciarTela();
+                desligarTela();
             } else if (evento.getSource().equals(botaoCargoSemAcesso)) {
                 ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
-                ControladorGeral.getInstance().getControladorCargo().getTelaCargoSemAcesso().iniciarTela();    
+                ControladorGeral.getInstance().getControladorCargo().getTelaCargoSemAcesso().iniciarTela();
+                desligarTela();
             } else if (evento.getSource().equals(botaoVoltar)) {
                 //Desliga a tela atual:
                 desligarTela();

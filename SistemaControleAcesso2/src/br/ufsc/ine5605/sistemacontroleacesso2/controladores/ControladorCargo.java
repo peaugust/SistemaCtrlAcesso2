@@ -30,6 +30,7 @@ import java.util.Collection;
 public class ControladorCargo {
 
     private TelaCargo telaCargo;
+    private TelaCadastrarCargo telaCadastrarCargo;
     private ArrayList<Cargo> listaCargo;
     private ControladorGeral controladorGeral;
     private TelaCadastrarCargo TelaCadastrarCargo;
@@ -229,6 +230,10 @@ public class ControladorCargo {
      */
     public TelaCargo getTela() {
         return telaCargo;
+    }
+    
+    public TelaCadastrarCargo getCadastrarCargo(){
+    	return telaCadastrarCargo;
     }
 
     /**Método que encontra cargo por código
