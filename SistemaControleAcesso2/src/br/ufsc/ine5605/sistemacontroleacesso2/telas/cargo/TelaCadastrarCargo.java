@@ -96,6 +96,7 @@ public class TelaCadastrarCargo extends JFrame {
         constraints.weighty = 2;
         constraints.gridwidth = 1; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
+        this.botaoCargoSemAcesso.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoCargoSemAcesso, constraints);
         
