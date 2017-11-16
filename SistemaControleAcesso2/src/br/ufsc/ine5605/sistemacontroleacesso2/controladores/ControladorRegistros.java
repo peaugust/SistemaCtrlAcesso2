@@ -148,6 +148,13 @@ public class ControladorRegistros {
     public TelaBuscaAcontecimento getTelaBuscaAcontecimento(){
         return this.telaBuscaAcontecimento;
     }
-    
-    
+
+    /**
+     * Retorna o Mapeador da Classe.
+     * 
+     * @return MapeadorRegistro - O Mapeador da Classe.
+     */
+    public MapeadorRegistro getMapeadorRegistro() {
+        return mapeadorRegistro;
+    }
 }
