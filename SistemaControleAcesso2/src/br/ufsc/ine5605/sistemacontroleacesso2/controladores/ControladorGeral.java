@@ -47,9 +47,12 @@ public class ControladorGeral {
     public ControladorGeral() {
         this.telaControladorGreal = new TelaControladorGeral();
         this.controladorCargo = new ControladorCargo(this);
+        this.controladorCargo.getMapeadorCargo().load();
         this.controladorFuncionario = new ControladorFuncionario(this);
+        this.controladorFuncionario.getMapeador().load();
         this.controladorPortaFinanceiro = new ControladorPortaFinanceiro(this);
         this.controladorRegistros = new ControladorRegistros(this);
+        this.controladorRegistros.getMapeadorRegistro().load();
         this.controladorGeral = this;
     }
 
