@@ -151,7 +151,6 @@ public class TelaCargo extends JFrame {
                 ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorCargo().getTelaRemoverCargo().iniciarTela();
             } else if (evento.getSource().equals(botaoListar)) {
-                ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorCargo().getTelaListarCargo().iniciarTela();
             } else if (evento.getSource().equals(botaoModificar)) {
                 ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();

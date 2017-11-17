@@ -155,6 +155,8 @@ public class TelaRemoverCargo extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
+        	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().load();
+
             //Quando o botao de remover for pressionado:
             if (evento.getSource().equals(botaoRemover)) {
                 //Ele converte o input do campoCodigo para uma Integer, caso nao for numero, ele joga uma execao -> tratar

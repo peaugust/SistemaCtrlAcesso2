@@ -49,9 +49,7 @@ public class TelaModificarFuncionario extends JFrame {
     private GerenciadorBotoes gerenciadorBotoes;
 
     //Construtor:
-    public TelaModificarFuncionario() {
-    	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().load();
-    	
+    public TelaModificarFuncionario() {    	
     	//Iniciarlizar o AcitionListener:
         this.gerenciadorBotoes = new GerenciadorBotoes();
 

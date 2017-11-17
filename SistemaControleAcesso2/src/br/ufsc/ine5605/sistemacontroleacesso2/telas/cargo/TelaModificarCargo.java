@@ -532,6 +532,8 @@ public class TelaModificarCargo extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
+        	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().load();
+
         	 if (evento.getSource().equals(botaoCarregar)) {
                  ICargo cargo= ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(campoModificar.getText());
                  

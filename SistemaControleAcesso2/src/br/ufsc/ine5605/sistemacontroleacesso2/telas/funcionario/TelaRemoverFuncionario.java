@@ -30,9 +30,7 @@ public class TelaRemoverFuncionario extends JFrame {
     private GerenciadorBotoes gerenciadorBotoes;
             
     //Construtor:
-    public TelaRemoverFuncionario () {
-    	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().load();
-    	
+    public TelaRemoverFuncionario () {    	
     	//Iniciarlizar o AcitionListener:
         this.gerenciadorBotoes = new GerenciadorBotoes();
         
