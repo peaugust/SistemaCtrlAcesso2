@@ -24,7 +24,7 @@ public class TelaListarFuncionarios extends JFrame {
     //Atributos:
     private GerenciadorBotoes gerenciadorBotoes;
     private JTable tabela;
-    private JButton botaoVoltar;
+//    private JButton botaoVoltar;
     
     //Construtor:
     public TelaListarFuncionarios () {
@@ -50,11 +50,10 @@ public class TelaListarFuncionarios extends JFrame {
     //Metodos:
 
     private void definirGUI() {        
-
-
-        
         
     }
+    
+    
     public void mostrarTabela() {
 //        DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
 //        modelo.setRowCount(0);
@@ -69,6 +68,7 @@ public class TelaListarFuncionarios extends JFrame {
         modelo.addColumn("Salario"); 
         modelo.addColumn("Cargo"); 
         modelo.addColumn("Data de Nascimento"); 
+        
         //Adicionar uma linha:
         for (Funcionario funcionarioLista : ControladorGeral.getInstance().getControladorFuncionario().getMapeador().getFuncionarios()) {
             modelo.addRow(new Object[]{ String.valueOf(funcionarioLista.getNumeroDeMatricula()), funcionarioLista.getNome(), funcionarioLista.getTelefone(),
