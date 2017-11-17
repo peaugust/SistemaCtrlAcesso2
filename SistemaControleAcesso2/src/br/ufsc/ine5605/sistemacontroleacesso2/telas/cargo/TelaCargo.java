@@ -91,6 +91,7 @@ public class TelaCargo extends JFrame {
         constraints.weightx = 1;
         constraints.weighty = 2;
         constraints.fill = GridBagConstraints.BOTH;
+        this.botaoListar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoListar, constraints);
         
@@ -103,6 +104,7 @@ public class TelaCargo extends JFrame {
         constraints.weighty = 2;
         constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
+        this.botaoModificar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoModificar, constraints);
         
@@ -148,6 +150,12 @@ public class TelaCargo extends JFrame {
             } else if (evento.getSource().equals(botaoRemover)) {
                 ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
                 ControladorGeral.getInstance().getControladorCargo().getTelaRemoverCargo().iniciarTela();
+            } else if (evento.getSource().equals(botaoListar)) {
+                ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorCargo().getTelaListarCargo().iniciarTela();
+            } else if (evento.getSource().equals(botaoModificar)) {
+                ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();
+                ControladorGeral.getInstance().getControladorCargo().getTelaModificarCargo().iniciarTela();
             } else if (evento.getSource().equals(botaoVoltar)) {
                 //Desliga a tela atual:
                 desligarTela();

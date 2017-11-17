@@ -13,15 +13,20 @@ import br.ufsc.ine5605.sistemacontroleacesso2.Gerente;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargoComAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.ICargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorCargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaCadastrarCargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaCargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaCargoComAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaCargoGerente;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaCargoSemAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaRemoverCargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaListarCargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo.TelaModificarCargo;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -29,12 +34,13 @@ import java.util.Collection;
  */
 public class ControladorCargo {
 
-    private TelaCargo telaCargo;
-    private TelaCadastrarCargo telaCadastrarCargo;
-    private ArrayList<Cargo> listaCargo;
+    private TelaCargo telaCargo;    
+    private MapeadorCargo mapeadorCargo;
     private ControladorGeral controladorGeral;
     private TelaCadastrarCargo TelaCadastrarCargo;
     private TelaRemoverCargo TelaRemoverCargo;
+    private TelaListarCargo TelaListarCargo;
+    private TelaModificarCargo TelaModificarCargo;
     private TelaCargoGerente TelaCargoGerente;
     private TelaCargoComAcesso TelaCargoComAcesso;
     private TelaCargoSemAcesso TelaCargoSemAcesso;
@@ -44,20 +50,19 @@ public class ControladorCargo {
      */
     public ControladorCargo(ControladorGeral controladorGeral) {
         this.controladorGeral = controladorGeral;
-        this.listaCargo = new ArrayList<Cargo>();
+        this.mapeadorCargo = new MapeadorCargo();
         this.telaCargo = new TelaCargo();
         this.TelaCadastrarCargo= new TelaCadastrarCargo();
         this.TelaRemoverCargo= new TelaRemoverCargo();
+        this.TelaListarCargo= new TelaListarCargo();
+        this.TelaModificarCargo= new TelaModificarCargo();
         this.TelaCargoGerente= new TelaCargoGerente();
         this.TelaCargoComAcesso= new TelaCargoComAcesso();
         this.TelaCargoSemAcesso= new TelaCargoSemAcesso();
     }
 
-    /**
-     *
-     */
 
-    /**
+	/**
      * Método que adiciona cargo Gerente ou CargoSemAcesso
      *
      * @param envelope Envelope com os atributos do Cargo a ser gerado
@@ -67,7 +72,7 @@ public class ControladorCargo {
         boolean existeNome = false;
 
         //Verifica se existe cargo com mesmo codigo ou nome
-        for (Cargo cargoArray : this.listaCargo) {
+        for (Cargo cargoArray : this.mapeadorCargo.getCargos()) {
             if (cargoArray.getCodigo().equals(envelope.codigo)) {
                 existeCodigo = true;
             }
@@ -82,13 +87,13 @@ public class ControladorCargo {
                     Gerente cargo = new Gerente(envelope.codigo, envelope.nome);
 
                     if (cargo != null) {
-                        listaCargo.add(cargo);
+                    	this.mapeadorCargo.put(cargo);
                     }
                 } else {
                     CargoSemAcesso cargo = new CargoSemAcesso(envelope.codigo, envelope.nome);
 
                     if (cargo != null) {
-                        this.listaCargo.add(cargo);
+                    	this.mapeadorCargo.put(cargo);
                     }
                 }
             } else {
@@ -108,7 +113,7 @@ public class ControladorCargo {
         boolean existeCodigo = false;
         boolean existeNome = false;
 
-        for (Cargo cargoArray : this.listaCargo) {
+        for (Cargo cargoArray : this.mapeadorCargo.getCargos()) {
             if (cargoArray.getCodigo().equals(envelope.codigo)) {
                 existeCodigo = true;
             }
@@ -124,7 +129,7 @@ public class ControladorCargo {
                         envelope.arrayComHorarios.get(2), envelope.arrayComHorarios.get(3));
 
                 if (cargo != null) {
-                    listaCargo.add(cargo);
+                	this.mapeadorCargo.put(cargo);
                 }
             } else {
                 throw new IllegalArgumentException("Nome de cargo já cadastrado.");
@@ -139,22 +144,8 @@ public class ControladorCargo {
      *
      * @param cargo Cargo a ser removido
      */
-    public void removerCargo(ICargo cargo) {
-        if (cargo != null) {
-            if (this.listaCargo.contains(cargo)) {
-                Collection<Funcionario> listaFuncionario = controladorGeral.getControladorFuncionario().getFuncionarios();
-                for (Funcionario funcionario : listaFuncionario) {
-                    if (funcionario.getCargo().getCodigo().equals(cargo.getCodigo())) {
-                        throw new IllegalArgumentException("Cargo vinculado a um funcionário. Resolva todas as pendências.");
-                    }
-                }
-                this.listaCargo.remove(cargo);
-            } else {
-                throw new IllegalArgumentException("Cargo não cadastrado.");
-            }
-        } else {
-            throw new IllegalArgumentException("Código de cargo inválido.");
-        }
+    public boolean removerCargo(String codigo) {
+        return this.mapeadorCargo.removeByCodigo(codigo);
     }
 
     /**
@@ -165,27 +156,27 @@ public class ControladorCargo {
      * @param codigo
      * @param nome
      */
-    public void modificarCargo(ICargo cargo, String codigo, String nome) {
-        if (cargo != null) {
-            if (listaCargo.contains(cargo)) {
-                cargo.setCodigo(codigo);
-                cargo.setNome(nome);
+    public void modificarCargo(String chaveCargo, String codigo, String nome) {
+        if (mapeadorCargo.get(chaveCargo) != null) {
+        	ICargo cargo= this.findCargoByCodigo(chaveCargo);
+        	
+            cargo.setCodigo(codigo);
+            cargo.setNome(nome);
 
-//    			ArrayList<Funcionario> listaFuncionario= controladorGeral.getControladorFuncionario().getFuncionarios();
-//    			for(Funcionario funcionario: listaFuncionario){
-//    				if (funcionario.getCargo().equals(cargo)){
-//    					funcionario.setCargo(cargo);
-//    				}
-//    			}
+    			Collection<Funcionario> listaFuncionario= controladorGeral.getControladorFuncionario().getFuncionarios();
+    			for(Funcionario funcionario: listaFuncionario){
+    				if (funcionario.getCargo().equals(cargo)){
+    					funcionario.setCargo(cargo);
+    				}
+    			}
             } else {
                 throw new IllegalArgumentException("Cargo não cadastrado.");
             }
-        } else {
-            throw new IllegalArgumentException("Código de cargo inválido.");
-        }
-    }
+        
+        	mapeadorCargo.persist();
+    	}
 
-    //*
+	//*
     /**
      * Método que modifica cargo utilizando como parâmetro o cargo a ser
      * alterado e o codigo, nome e horários
@@ -195,60 +186,46 @@ public class ControladorCargo {
      * @param nome
      * @param arrayHorarios
      */
-    public void modificarCargo(CargoComAcesso cargo, String codigo, String nome, ArrayList<Calendar> arrayHorarios) {
-
-        if (cargo != null) {
-            if (listaCargo.contains(cargo)) {
-                cargo.setCodigo(codigo);
-                cargo.setNome(nome);
-                cargo.setArrayComHorarios(arrayHorarios);
+    public void modificarCargo(String chaveCargo, EnvelopeCargoComAcesso envelope) {
+    	 if (mapeadorCargo.get(chaveCargo) != null) {
+         		
+    		 	CargoComAcesso cargo= (CargoComAcesso) this.findCargoByCodigo(chaveCargo);
+                cargo.setCodigo(envelope.codigo);
+                cargo.setNome(envelope.nome);
+                cargo.setArrayComHorarios(envelope.arrayComHorarios);
                 Collection<Funcionario> listaFuncionario = controladorGeral.getControladorFuncionario().getFuncionarios();
                 for (Funcionario func : listaFuncionario) {
                     if (func.getCargo().equals(cargo)) {
-
+    					func.setCargo(cargo);
                     }
                 }
             } else {
                 throw new IllegalArgumentException("Cargo não cadastrado.");
             }
-        } else {
-            throw new IllegalArgumentException("Cargo inválido.");
+    	 
+    	 	mapeadorCargo.persist();
+
         }
+    
+    public Collection<Cargo> getCargos () {
+        return this.mapeadorCargo.getCargos();
     }
-
-    /**
-     *
-     * @return listaCargo.
-     */
-    public ArrayList<Cargo> getListaCargo() {
-        return listaCargo;
-    }
-
+    
+    /**Método que encontra cargo por código
+    *
+    * @param codigo
+    * @return
+    */
+   public ICargo findCargoByCodigo(String codigo) {
+       return this.mapeadorCargo.get(codigo);
+   }
+   
     /**
      *
      * @return telaCargo.
      */
     public TelaCargo getTela() {
         return telaCargo;
-    }
-    
-    public TelaCadastrarCargo getCadastrarCargo(){
-    	return telaCadastrarCargo;
-    }
-
-    /**Método que encontra cargo por código
-     *
-     * @param codigo
-     * @return
-     */
-    public ICargo findCargoByCodigo(String codigo) {
-        for (Cargo cargo : this.listaCargo) {
-            if (cargo.getCodigo().equals(codigo)) {
-                return cargo;
-            }
-        }
-
-        return null;
     }
 
     public TelaCadastrarCargo getTelaCadastrarCargo() {
@@ -258,6 +235,14 @@ public class ControladorCargo {
     public TelaRemoverCargo getTelaRemoverCargo() {
         return TelaRemoverCargo;
     }
+    
+    public TelaListarCargo getTelaListarCargo() {
+ 		return TelaListarCargo;
+ 	}
+
+ 	public TelaModificarCargo getTelaModificarCargo() {
+ 		return TelaModificarCargo;
+ 	}
 
     public TelaCargoGerente getTelaCargoGerente() {
         return TelaCargoGerente;
@@ -270,4 +255,8 @@ public class ControladorCargo {
     public TelaCargoSemAcesso getTelaCargoSemAcesso() {
         return TelaCargoSemAcesso;
     }
+    
+    public MapeadorCargo getMapeadorCargo() {
+		return mapeadorCargo;
+	}
 }

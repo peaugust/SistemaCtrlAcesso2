@@ -1,8 +1,9 @@
 
 package br.ufsc.ine5605.sistemacontroleacesso2.telas.cargo;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.Cargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
-import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeCargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.ICargo;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -23,8 +24,8 @@ import javax.swing.WindowConstants;
  */
 public class TelaRemoverCargo extends JFrame {
     //Atributos:
-    private JLabel labelMatricula;
-    private JTextField campoMatricula;
+    private JLabel labelCodigo;
+    private JTextField campoCodigo;
     private JButton botaoRemover;
     private JButton botaoVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
@@ -69,7 +70,7 @@ public class TelaRemoverCargo extends JFrame {
         //
         
         //Definir o primeiro rotulo:
-        this.labelMatricula = new JLabel("Insira o numero de matricula:     ");
+        this.labelCodigo = new JLabel("Insira o código:     ");
         //Definir suas especificacoes dentro do GridBagLayout:
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -78,14 +79,14 @@ public class TelaRemoverCargo extends JFrame {
         constraints.anchor = GridBagConstraints.LINE_END;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar esse rotulo ao meu container:
-        painel.add(this.labelMatricula, constraints);
+        painel.add(this.labelCodigo, constraints);
         
         //
         //Campos:
         //
         
         //Colocar os campos para inserir dados:
-        this.campoMatricula = new JTextField(15);
+        this.campoCodigo = new JTextField(15);
         //Definir as suas configurações:
         constraints.gridx = 1;
         constraints.gridy = 0;
@@ -94,7 +95,7 @@ public class TelaRemoverCargo extends JFrame {
         constraints.anchor = GridBagConstraints.LINE_START;
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar o campo ao meu container:
-        painel.add(this.campoMatricula, constraints);
+        painel.add(this.campoCodigo, constraints);
         
         //
         //Botoes:
@@ -156,34 +157,37 @@ public class TelaRemoverCargo extends JFrame {
         public void actionPerformed(ActionEvent evento) {
             //Quando o botao de remover for pressionado:
             if (evento.getSource().equals(botaoRemover)) {
-                //Ele converte o input do campoMatricula para uma Integer, caso nao for numero, ele joga uma execao -> tratar
+                //Ele converte o input do campoCodigo para uma Integer, caso nao for numero, ele joga uma execao -> tratar
                 try {
                     //Pegar o valor do campo de texto:
-                    Integer matricula = Integer.valueOf(campoMatricula.getText());
-                    //Se encontrar o Funcionario e remover:
-                    if (ControladorGeral.getInstance().getControladorFuncionario().removerFuncionarioPelaMatricula(matricula) == true ) { 
-                    //Avisar o usuario do sucesso:
-                    JOptionPane.showMessageDialog(null, "Funcionario Removido com Sucesso!");
-                    //Tirar os inputs anteriores do buffer:
-                    campoMatricula.setText("");
+                    String codigo = campoCodigo.getText();                    
+                    //Se encontrar o Cargo e remover:
+                    if (ControladorGeral.getInstance().getControladorCargo().removerCargo(codigo)) { 
+	                    //Avisar o usuario do sucesso:
+	                    JOptionPane.showMessageDialog(null, "Cargo Removido com Sucesso!");
+	                    
+	                    ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().persist();
+
+	                    //Tirar os inputs anteriores do buffer:
+	                    campoCodigo.setText("");
                     
                     } else { //Caso não encontrar:
                         //Avisar sobre o ocorrido:
-                        JOptionPane.showMessageDialog(null, "Funcionario não encontrado, tente novamente.");
+                        JOptionPane.showMessageDialog(null, "Cargo não encontrado, tente novamente.");
                     }
                     
-                } catch (NumberFormatException execao) {
+                } catch (Exception e) {
                     
-                    JOptionPane.showMessageDialog(null, "Insira Apenas Numeros.");
+                    JOptionPane.showMessageDialog(null, e.getMessage());
                     
                 }
                                
             } else if (evento.getSource().equals(botaoVoltar)) {
                 
                 desligarTela();
-                ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
+                ControladorGeral.getInstance().getControladorCargo().getTela().iniciarTela();
                 //Tirar os inputs anteriores do buffer:
-                campoMatricula.setText("");
+                campoCodigo.setText("");
                     
             }
         }

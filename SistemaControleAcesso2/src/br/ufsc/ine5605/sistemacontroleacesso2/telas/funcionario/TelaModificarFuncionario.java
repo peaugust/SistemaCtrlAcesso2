@@ -50,7 +50,9 @@ public class TelaModificarFuncionario extends JFrame {
 
     //Construtor:
     public TelaModificarFuncionario() {
-        //Iniciarlizar o AcitionListener:
+    	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().load();
+    	
+    	//Iniciarlizar o AcitionListener:
         this.gerenciadorBotoes = new GerenciadorBotoes();
 
         //Metodo para configurar a GUI:
