@@ -382,8 +382,7 @@ public class TelaModificarFuncionario extends JFrame {
         int salario = Integer.parseInt(this.campoSalario.getText());
         //Encontrar o cargo:
         int codigoCargo = Integer.parseInt(this.campoCargo.getText());
-//        ICargo cargo = ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(codigoCargo);
-        ICargo cargo = null;
+        ICargo cargo = ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(String.valueOf(codigoCargo));
         //Para o dia de nascimento:
         int ano = Integer.parseInt(this.campoAno.getText());
         int mes = Integer.parseInt(this.campoMes.getText());
