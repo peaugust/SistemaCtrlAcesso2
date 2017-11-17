@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.AcontecimentoRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
@@ -12,6 +13,7 @@ import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaBuscaAcontecime
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaBuscaMatricula;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.registro.TelaControladorRegistros;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -19,6 +21,7 @@ import java.util.Collection;
  * @author PEaug
  */
 public class ControladorRegistros {
+
     //Atributos:
     /**
      * Controlador Geral responsável por essa instância de controlador
@@ -29,7 +32,6 @@ public class ControladorRegistros {
      * Tela de Registro desse Controlador
      */
     //private TelaRegistro telaRegistro;
-
     /**
      * ArrayList que armazena os registros gerados
      */
@@ -39,13 +41,12 @@ public class ControladorRegistros {
      * @param controladorGeral ControladorGeral - Controlador Geral responsável
      * por esse Controlador
      */
-    
     private TelaControladorRegistros telaControladorRegistros;
-    
+
     private TelaBuscaMatricula telaBuscaMatricula;
-    
+
     private TelaBuscaAcontecimento telaBuscaAcontecimento;
-    
+
     //Construtor
     public ControladorRegistros(ControladorGeral controladorGeral) {
         this.controladorGeral = controladorGeral;
@@ -63,23 +64,24 @@ public class ControladorRegistros {
      * @return registrosEncontrados ArrayList - ArrayList com os registros
      * selecionados
      */
-   
-// public ArrayList<Registro> findRegistroByAcontecimento(int indiceDoAcontecimento) {
-        //Criando o ArrayList de Retorno
-    //    ArrayList<Registro> registrosEncontrados = new ArrayList<>();
+    public Collection<Registro> findRegistroByAcontecimento(int indiceDoAcontecimento) {
+        //Puxando a Collection do Mapeador
+        Collection<Registro> listaRegistros = this.mapeadorRegistro.getList();
+        //Criando a Collection de retorno
+        ArrayList<Registro> registrosEncontrados = new ArrayList<>();
         //Criando o Vetor com os índices do Enum
-    //    AcontecimentoRegistro[] acontecimentos = AcontecimentoRegistro.values();
-        //Iniciando a busca no Array do Controlador por Objetos com Enum igual ao do parametro 
-    //    for (Registro registroBusca : arrayDeRegistros) {
+        AcontecimentoRegistro[] acontecimentos = AcontecimentoRegistro.values();
+        // Iniciando a busca no Array do Controlador por Objetos com Enum igual ao do parametro 
+        for (Registro registroBusca : listaRegistros) {
             //Se o registroBusca tiver um Enum igual ao Enum que está sendo apontado pelo vetor     
-    //        if (registroBusca.getAcontecimento().equals(acontecimentos[indiceDoAcontecimento])) {
+            if (registroBusca.getAcontecimento().equals(acontecimentos[indiceDoAcontecimento])) {
                 //O registro que satisfaz a condição é adicionado ao Array de retorno
-    //            registrosEncontrados.add(registroBusca);
-       //     }
-    //    }
+                registrosEncontrados.add(registroBusca);
+            }
+        }
         //Retornando o Array para a tela  
-    //    return registrosEncontrados;
-    //}
+        return registrosEncontrados;
+    }
 
     /**
      * Método responsável por buscar registros no Array do controlador usando um
@@ -90,19 +92,20 @@ public class ControladorRegistros {
      * @return registrosEncontrados ArrayList - Array dos Registros que possuem
      * o mesmo número de matrícula dado por parâmetro
      */
-   // public ArrayList<Registro> findRegistroByMatricula(int numerodeMatricula) {
+    public ArrayList<Registro> findRegistroByMatricula(int numerodeMatricula) {
+        Collection<Registro> listaRegistros = this.mapeadorRegistro.getList();
         //Criando o ArrayList de Retorno
-   //     ArrayList<Registro> registrosEncontrados = new ArrayList<>();
+        ArrayList<Registro> registrosEncontrados = new ArrayList<>();
         /*Iniciando a busca no Array de Registros do Controlador por Objetos que
          *possuam o mesmo número de matrícula passado por parametro
          */
-   //     for (Registro registroBusca : arrayDeRegistros) {
- //           if (registroBusca.getNumDeMatricula() == numerodeMatricula) {
-   //             registrosEncontrados.add(registroBusca);
-     //       }
-       // }
-      //  return registrosEncontrados;
-    //}
+        for (Registro registroBusca : listaRegistros) {
+            if (registroBusca.getNumDeMatricula() == numerodeMatricula) {
+                registrosEncontrados.add(registroBusca);
+            }
+        }
+        return registrosEncontrados;
+    }
 
     /**
      * Método que adiciona um novo Registro no HashMap do MapeadorRegistro
@@ -110,10 +113,10 @@ public class ControladorRegistros {
      * @param envelope - Registro a ser adicionado
      */
     public void adicionarRegistro(EnvelopeRegistro envelope) {
-        if(envelope.acontecimento != null){
+        if (envelope.acontecimento != null) {
             Registro novoRegistro = new Registro(envelope.acontecimento, envelope.dataAcontecimento, envelope.numDeMatricula, envelope.chave);
             this.mapeadorRegistro.put(novoRegistro);
-        } 
+        }
     }
 
     /**
@@ -136,18 +139,17 @@ public class ControladorRegistros {
     public ControladorGeral getControladorGeral() {
         return controladorGeral;
     }
-    
-    public TelaControladorRegistros getTela(){
+
+    public TelaControladorRegistros getTela() {
         return this.telaControladorRegistros;
     }
-    
-    public TelaBuscaMatricula getTelaBuscaMatricula(){
+
+    public TelaBuscaMatricula getTelaBuscaMatricula() {
         return this.telaBuscaMatricula;
     }
-    
-    public TelaBuscaAcontecimento getTelaBuscaAcontecimento(){
+
+    public TelaBuscaAcontecimento getTelaBuscaAcontecimento() {
         return this.telaBuscaAcontecimento;
     }
-    
-    
+
 }
