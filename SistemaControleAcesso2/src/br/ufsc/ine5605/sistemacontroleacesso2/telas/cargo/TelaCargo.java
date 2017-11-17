@@ -143,6 +143,8 @@ public class TelaCargo extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
+        	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().persist();
+
             //Terminar de fazer:
             if (evento.getSource().equals(botaoCadastrar)) {
                 ControladorGeral.getInstance().getControladorCargo().getTela().desligarTela();

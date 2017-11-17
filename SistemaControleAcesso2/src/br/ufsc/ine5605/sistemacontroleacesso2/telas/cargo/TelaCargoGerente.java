@@ -202,7 +202,9 @@ public class TelaCargoGerente extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
-            //Quando o botao de crair for pressionado:
+        	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().load();
+
+        	//Quando o botao de crair for pressionado:
             if (evento.getSource().equals(botaoCriar)) {
                 
                 try {
