@@ -41,6 +41,7 @@ public class TelaCadastrarFuncionario extends JFrame {
     private JTextField campoCargo;
     private JButton botaoCriar;
     private JButton botaoVoltar;
+    private JButton botaoListarCargos;
     private GerenciadorBotoes gerenciadorBotoes;
             
     //Construtor:
@@ -296,8 +297,8 @@ public class TelaCadastrarFuncionario extends JFrame {
         //Adicionar o botao:
         painel.add(this.botaoCriar, constraints);
         
-        //Botao para voltar:
-        this.botaoVoltar = new JButton ("Voltar");
+        //Botao para Listar:
+        this.botaoListarCargos = new JButton ("Listar Cargos");
         //Definir o layout:
         constraints.gridx = 0;
         constraints.gridy = 10;
@@ -306,10 +307,23 @@ public class TelaCadastrarFuncionario extends JFrame {
         constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicioanr o action listener:
+        this.botaoListarCargos.addActionListener(this.gerenciadorBotoes);
+        //Adicionar o botao:
+        painel.add(this.botaoListarCargos, constraints);
+                
+        //Botao para voltar:
+        this.botaoVoltar = new JButton ("Voltar");
+        //Definir o layout:
+        constraints.gridx = 0;
+        constraints.gridy = 11;
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.fill = GridBagConstraints.BOTH;
+        //Adicioanr o action listener:
         this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoVoltar, constraints);
-        
         
     }
     
@@ -394,6 +408,10 @@ public class TelaCadastrarFuncionario extends JFrame {
                     }
                     
                 }
+               
+            }else if (evento.getSource().equals(botaoListarCargos)) {
+                
+                ControladorGeral.getInstance().getControladorCargo().getTelaListarCargo().iniciarTela();
                 
             } else if (evento.getSource().equals(botaoVoltar)) {
                 
