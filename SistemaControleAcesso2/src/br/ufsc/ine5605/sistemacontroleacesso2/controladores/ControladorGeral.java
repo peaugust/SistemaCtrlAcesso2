@@ -23,10 +23,21 @@ public class ControladorGeral {
      * Classe com o Controlador de Funcionarios.
      */
     private ControladorFuncionario controladorFuncionario;
+    
+    /**
+     * Classe com o Controlador de Cargos.
+     */
     private ControladorCargo controladorCargo;
-//    private ControladorPortaFinanceiro controladorPortaFinanceiro;
+    
+    /**
+     * Atributo com o Controlador da Porta Financeiro do Sistema.
+     */
+    private ControladorPortaFinanceiro controladorPortaFinanceiro;
+    
+    /**
+     * Atributo com o Controlaor de Registros do Sistema.
+     */
     private ControladorRegistros controladorRegistros;
-//    private TelaControladorGeral telaControladorGeral;
 
     //Construtor:
     /**
@@ -37,36 +48,53 @@ public class ControladorGeral {
         this.telaControladorGreal = new TelaControladorGeral();
         this.controladorCargo = new ControladorCargo(this);
         this.controladorFuncionario = new ControladorFuncionario(this);
-//        this.controladorPortaFinanceiro = new ControladorPortaFinanceiro(this);
+        this.controladorPortaFinanceiro = new ControladorPortaFinanceiro(this);
         this.controladorRegistros = new ControladorRegistros(this);
-//        this.telaControladorGeral = new TelaControladorGeral(this);
         this.controladorGeral = this;
     }
 
     //Metodos:
     /**
-     * Inicia a interface grafica de usuario principal para se interagir com o
-     * sistema.
+     * Retorna o Controlador de Funcionarios.
+     * 
+     * @return ControladorFuncionario.
      */
-//    public void iniciarTela() {
-//        this.telaControladorGreal.iniciar();
-//    }
     public ControladorFuncionario getControladorFuncionario() {
         return this.controladorFuncionario;
     }
 
+    /**
+     * Retorna o Controlador de Cargos.
+     * 
+     * @return ControladorCargo.
+     */
     public ControladorCargo getControladorCargo() {
         return this.controladorCargo;
     }
-//
-//    public ControladorPortaFinanceiro getControladorPortaFinanceiro() {
-//        return controladorPortaFinanceiro;
-//    }
-//
+
+    /**
+     * Retorna o Controlador da Porta do Financeiro.
+     * 
+     * @return ControladorPortaFinanceiro.
+     */
+    public ControladorPortaFinanceiro getControladorPortaFinanceiro() {
+        return controladorPortaFinanceiro;
+    }
+
+    /**
+     * Retorna o Controlador de Registros.
+     * 
+     * @return ControladorRegistros.
+     */
     public ControladorRegistros getControladorRegistros() {
         return controladorRegistros;
     }
 
+    /**
+     * Retorna a Tela (GUI) do ControladorGeral.
+     * 
+     * @return TelaControladorGeral.
+     */
     public TelaControladorGeral getTela() {
         return this.telaControladorGreal;
     }

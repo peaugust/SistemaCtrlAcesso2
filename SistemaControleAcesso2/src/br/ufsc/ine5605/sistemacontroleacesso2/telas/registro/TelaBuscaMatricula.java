@@ -131,7 +131,7 @@ public class TelaBuscaMatricula extends JFrame {
 
                 try {
                     //Chama o metodo de adicionar funcionario (joga execoes):
-                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByMatricula(Integer.parseInt(campoMatricula.getText()));
+//                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByMatricula(Integer.parseInt(campoMatricula.getText()));
                     //Trocar para a tela anterior:
                     desligarTela();
                     ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
