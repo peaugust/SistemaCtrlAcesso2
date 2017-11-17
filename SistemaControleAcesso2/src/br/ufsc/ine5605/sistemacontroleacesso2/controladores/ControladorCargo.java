@@ -145,6 +145,13 @@ public class ControladorCargo {
      * @param cargo Cargo a ser removido
      */
     public boolean removerCargo(String codigo) {
+    	
+    	Collection<Funcionario> listaFuncionario = controladorGeral.getControladorFuncionario().getFuncionarios();
+        for (Funcionario funcionario : listaFuncionario) {
+            if (funcionario.getCargo().getCodigo().equals(codigo)) {
+                throw new IllegalArgumentException("Cargo vinculado a um funcionário. Resolva todas as pendências.");
+            }
+        }
         return this.mapeadorCargo.removeByCodigo(codigo);
     }
 
