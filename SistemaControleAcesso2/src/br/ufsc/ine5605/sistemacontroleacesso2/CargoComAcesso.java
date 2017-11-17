@@ -138,4 +138,13 @@ public class CargoComAcesso extends Gerente {
     public void setArrayComHorarios(ArrayList<Calendar> arrayComHorarios) {
         this.arrayComHorarios = arrayComHorarios;
     }
+    
+    /**Método que retorna o nome da classe
+     *@return String  Nome da classe
+     */
+    @Override
+    public String toString(){
+		return this.getClass().getSimpleName();
+    }
+    
 }
