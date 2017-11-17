@@ -56,6 +56,7 @@ public class MapeadorFuncionario {
      */
     public void put (Funcionario funcionario) {
         this.cacheFuncionarios.put(funcionario.getNumeroDeMatricula(), funcionario);
+        this.persist();
     }
     
     /**
