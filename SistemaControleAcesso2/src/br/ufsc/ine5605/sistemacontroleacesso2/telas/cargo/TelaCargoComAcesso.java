@@ -490,6 +490,8 @@ public class TelaCargoComAcesso extends JFrame {
          */
         @Override
         public void actionPerformed(ActionEvent evento) {
+        	ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().load();
+
             //Quando o botao de crair for pressionado:
             if (evento.getSource().equals(botaoCriar)) {
                 
