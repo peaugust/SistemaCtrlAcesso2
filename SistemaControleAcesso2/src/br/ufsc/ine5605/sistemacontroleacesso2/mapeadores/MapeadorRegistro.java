@@ -72,7 +72,7 @@ public class MapeadorRegistro {
         
     }
     
-    private void load(){
+    public void load(){
         try {
             FileInputStream fIS = new FileInputStream(fileName);
             ObjectInputStream oIS = new ObjectInputStream(fIS);
