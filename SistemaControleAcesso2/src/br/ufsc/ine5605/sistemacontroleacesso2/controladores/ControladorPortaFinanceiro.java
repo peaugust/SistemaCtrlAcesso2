@@ -6,6 +6,7 @@ import br.ufsc.ine5605.sistemacontroleacesso2.CargoSemAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
+import br.ufsc.ine5605.sistemacontroleacesso2.telas.portafinanceiro.TelaPortaFinanceiro;
 import java.util.Calendar;
 
 /**
@@ -23,7 +24,7 @@ public class ControladorPortaFinanceiro {
     /**
      * Atributo com a GUI da PortaFinanceiro.
      */
-//    private TelaPortaFinanceiro telaPortaFinanceiro;
+    private TelaPortaFinanceiro telaPortaFinanceiro;
 
     //Construtor:
     /**
@@ -33,18 +34,10 @@ public class ControladorPortaFinanceiro {
      */
     public ControladorPortaFinanceiro(ControladorGeral controlador) {
         this.controladorGeral = controlador;
-//        this.telaPortaFinanceiro = new TelaPortaFinanceiro(this);
+        this.telaPortaFinanceiro = new TelaPortaFinanceiro();
     }
 
     //Metodos:
-    /**
-     * Mostra uma interface grafica para o usuario interagir. Nele ele pode
-     * selecionar o que quer fazer na porta.
-     */
-    public void iniciarTela() {
-//        this.telaPortaFinanceiro.iniciar();
-    }
-
     /**
      * Tenta abrir a porta. Caso o a matricula do funcionario não for valida,
      * ele joga uma excecao.
@@ -67,30 +60,7 @@ public class ControladorPortaFinanceiro {
         //Se nao existir, joga uma excecao;
         if (!(existe)) {
             throw new IllegalArgumentException("Funcionario com essa matricula nao existe.");
-        }
-
-        //Tentar acesso a porta:
-        //Verificar se o usuario em questao possui acesso a a porta:
-//        if (funcionarioPorta.getCargo() != null) {
-//            if (funcionarioPorta.getCargo().temAcesso()) {
-//                return "Acesso Autorizado.";
-//            } else {
-//                if (funcionarioPorta.getCargo() instanceof CargoComAcesso) {
-//                    //TEM QUE FAZER A VERIFICAÇÃO!
-//                    EnvelopeRegistro envelope = new EnvelopeRegistro(AcontecimentoRegistro.FORADEHORARIO, horario, numeroDeMatricula);
-//                    controladorGeral.getControladorRegistros().adicionarRegistro(envelope);
-//                    return AcontecimentoRegistro.FORADEHORARIO.getDescricao();
-//                } else if (funcionarioPorta.getCargo() instanceof CargoSemAcesso) {
-//                    EnvelopeRegistro envelope = new EnvelopeRegistro(AcontecimentoRegistro.CARGOSEMACESSO, horario, numeroDeMatricula);
-//                    controladorGeral.getControladorRegistros().adicionarRegistro(envelope);
-//                    return AcontecimentoRegistro.CARGOSEMACESSO.getDescricao();
-//                }
-//            }
-//            return "Acesso não autorizado.";
-//        } else {
-//            return "Acesso não autorizado. Funcionário sem cargo.";
-//        }
-        
+        }        
         //Ver se eh um funcionario que tem uma array de horarios:
         if (funcionarioPorta.getCargo() instanceof CargoComAcesso) {
             //Se eh, verificar o horario:
@@ -114,4 +84,14 @@ public class ControladorPortaFinanceiro {
             return AcontecimentoRegistro.CARGOSEMACESSO.getDescricao();
         }
     }
+    
+    /**
+     * Metodo que retorna a GUI desse controlador.
+     * 
+     * @return TelaPortaFinanceiro.
+     */
+    public TelaPortaFinanceiro getTela() {
+        return telaPortaFinanceiro;
+    }
+    
 }
