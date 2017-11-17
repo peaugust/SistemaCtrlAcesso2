@@ -40,7 +40,8 @@ public class TelaListarCargo extends JFrame {
         //Mudar o titula da minha Frame:
         this.setTitle("Listar os Cargos:");
         //Quando clicado no X na Frame, não acontece nada:
-        this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE );
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE );
+        	
         //Definir o tamanho da Janela(Herdado de Window):
         this.setSize(600, 600);
         //Definir que a Janela vai ser criada no centro da tela:
@@ -49,6 +50,7 @@ public class TelaListarCargo extends JFrame {
         this.setResizable(true);
         //Deixar que seja visto:
         this.setVisible(false);
+        
     }
     //Metodos:
 

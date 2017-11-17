@@ -117,7 +117,6 @@ public class MapeadorCargo {
             fileInputStream = null;
             
         } catch (FileNotFoundException execao) {
-            System.out.println(execao);
         } catch (IOException execao) {
             System.out.println(execao);
         } catch (ClassNotFoundException execao) {
