@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2.telas.registro;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.AcontecimentoRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -12,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,6 +37,7 @@ public class TelaBuscaAcontecimento extends JFrame {
     private JButton botaoVoltar;
     private JTable jTableItens;
     private JScrollPane spBaseTabela;
+    private JComboBox jComboAcontecimentos;
 
     //Construtor:
     public TelaBuscaAcontecimento() {
@@ -115,7 +118,19 @@ public class TelaBuscaAcontecimento extends JFrame {
         this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoVoltar, constraints);
-
+        
+        this.jComboAcontecimentos = new JComboBox();
+        this.jComboAcontecimentos.addItem(AcontecimentoRegistro.CARGOSEMACESSO);
+        this.jComboAcontecimentos.addItem(AcontecimentoRegistro.FORADEHORARIO); 
+        constraints.gridx = 0;
+        constraints.gridy = 11;
+        constraints.weightx = 0;
+        constraints.weighty = 0;
+        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.fill = GridBagConstraints.BOTH;
+        painel.add(this.jComboAcontecimentos, constraints);
+                
+                
         this.jTableItens = new JTable();
         this.jTableItens.setPreferredScrollableViewportSize(new Dimension(500, 70));
         this.jTableItens.setFillsViewportHeight(true);
