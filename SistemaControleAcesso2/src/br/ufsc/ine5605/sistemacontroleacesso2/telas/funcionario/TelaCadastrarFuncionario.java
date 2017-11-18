@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -362,11 +363,15 @@ public class TelaCadastrarFuncionario extends JFrame {
         
         ArrayList<Cargo> lista = new ArrayList();
         
+        Vector<Cargo> vetor = new Vector();
+        
         for (Cargo cargo : ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().getCargos()) {
-            lista.add(cargo);
+            vetor.add(cargo);
         }
         
-        this.comboCargo.setModel((ComboBoxModel) lista);
+        DefaultComboBoxModel model = new DefaultComboBoxModel(vetor);
+        
+        this.comboCargo.setModel(model);
     }
     
     /**
