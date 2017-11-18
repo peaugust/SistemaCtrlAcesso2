@@ -12,39 +12,44 @@ public class Funcionario implements Serializable {
     //Atributos:
     /**
      * Atributo para indicar a versao que foi feita essa classe, caso ser feita
-     * outra versao do sistema
+     * outra versao do sistema.
      */
     private static final long serialVersionUID = 1L;
     
     /**
-     * Atributo que representa o número de matrícula do funcionário
+     * Atributo que representa o número de matrícula do funcionário.
      */
     private int numeroDeMatricula;
     
     /**
-     * Atributo que representa o nome do funcionário
+     * Atributo que representa o nome do funcionário.
      */
     private String nome;
     
     /**
-     * Atributo que representa o número de telefone do funcionário
+     * Atributo que representa o número de telefone do funcionário.
      */
     private String telefone;
     
     /**
-     * Atributo que representa o salário do funcionário
+     * Atributo que representa o salário do funcionário.
      */
     private int salario;
     
     /**
-     * Atributo que representa o cargo do funcionário
+     * Atributo que representa o cargo do funcionário.
      */
     private ICargo cargo;
     
     /**
-     * Atributo que representa a data de nascimento do funcionário
+     * Atributo que representa a data de nascimento do funcionário.
      */
     private Calendar dataDeNascimento;
+    
+    /**
+     * Atributo que guarda quantos avisos o Funcionario recebeu.
+     */
+    private int avisosRegistro;
     
     //Construtor:
     /**Construtor da classe funcionário
@@ -64,9 +69,14 @@ public class Funcionario implements Serializable {
         this.salario = salario;
         this.cargo = cargo;
         this.dataDeNascimento = dataDeNascimento;
+        this.avisosRegistro= 0;
     }
     
     //Metodos:
+    public void avisarFuncionario() {
+        this.avisosRegistro++;
+    }
+    
     //Getters e setters:
     /**Método que retorna o número de matrícula
      * 
@@ -92,7 +102,8 @@ public class Funcionario implements Serializable {
         return nome;
     }
     
-    /**Método que modifica o nome do funcionário
+    /**
+     * Método que modifica o nome do funcionário
      * 
      * @param nome  nome do funcionário a ser setado
      */
@@ -100,7 +111,8 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
     
-    /**Método que retorna a data de nascimento do funcionário
+    /**
+     * Método que retorna a data de nascimento do funcionário
      * 
      * @return data de nascimento do funcionário
      */
@@ -108,7 +120,8 @@ public class Funcionario implements Serializable {
         return dataDeNascimento;
     }
 
-    /**Método que modifica a data de nascimento do funcionário
+    /**
+     * Método que modifica a data de nascimento do funcionário
      * 
      * @param dataDeNascimento data de nascimento do funcionário a ser setada
      */
@@ -121,7 +134,8 @@ public class Funcionario implements Serializable {
         return telefone;
     }
     
-    /**Método que modifica o número de telefone do funcionario
+    /**
+     * Método que modifica o número de telefone do funcionario
      * 
      * @param telefone  número de telefone do funcionario a ser setado
      */
@@ -133,7 +147,8 @@ public class Funcionario implements Serializable {
         return salario;
     }
     
-    /**Método que modifica o salário do funcionario
+    /**
+     * Método que modifica o salário do funcionario
      * 
      * @param salario  salário do funcionario a ser setado
      */
@@ -141,7 +156,8 @@ public class Funcionario implements Serializable {
         this.salario = salario;
     }
     
-    /**Método que retorna o cargo do funcionario
+    /**
+     * Método que retorna o cargo do funcionario
      * 
      * @return cargo do funcionario
      */
@@ -149,12 +165,25 @@ public class Funcionario implements Serializable {
         return cargo;
     }
     
-    /**Método que modifica o cargo do funcionario 
+    /**
+     * Método que modifica o cargo do funcionario 
      * 
      * @param cargo  cargo do funcionario a ser setado
      */
     public void setCargo(ICargo cargo) {
         this.cargo = cargo;
     }
+
+    /**
+     * Metodo que retornar quantos avisos o Funcioanrio recebeu por tentar acessar
+     * a porta.
+     * 
+     * @return avisosRegistro - int.
+     */
+    public int getAvisosRegistro() {
+        return avisosRegistro;
+    }
+    
+    
     
 }

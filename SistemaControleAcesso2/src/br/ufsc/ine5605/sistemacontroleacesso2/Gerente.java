@@ -28,4 +28,11 @@ public class Gerente extends CargoSemAcesso{
         return true;
     }
     
+    /**Método que retorna o nome da classe
+     *@return String  Nome da classe
+     */
+    @Override
+    public String toString(){
+		return this.getClass().getSimpleName();
+    }
 }

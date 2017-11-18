@@ -49,18 +49,20 @@ public class TelaListarFuncionarios extends JFrame {
     }
     //Metodos:
 
-    private void definirGUI() {        
+    private void definirGUI() {     
         
+        this.tabela = new JTable();
+        this.tabela.setPreferredScrollableViewportSize(new Dimension(600,600));
+        this.tabela.setFillsViewportHeight(true);;
+        
+        JScrollPane painelRolavel = new JScrollPane(tabela);
+        this.getContentPane().add(painelRolavel);
     }
     
     
-    public void mostrarTabela() {
-//        DefaultTableModel modelo = (DefaultTableModel) this.tabela.getModel();
-//        modelo.setRowCount(0);
-        
+    public void atualizarTabela() {
+        //Novo modelo (layout) para a tabela:
         DefaultTableModel modelo = new DefaultTableModel(); 
-        tabela = new JTable(modelo); 
-        
         //Criar as colunas:
         modelo.addColumn("Numero da Matricula"); 
         modelo.addColumn("Nome"); 
@@ -75,12 +77,12 @@ public class TelaListarFuncionarios extends JFrame {
             String.valueOf(funcionarioLista.getSalario()), funcionarioLista.getCargo().getNome(), funcionarioLista.getDataDeNascimento().toString()} );
         }
         
-        tabela.setPreferredScrollableViewportSize(new Dimension(600,600));
-        tabela.setFillsViewportHeight(true);
+        this.tabela.setModel(modelo);
+        this.repaint();
         
-        JScrollPane painelRolavel = new JScrollPane(tabela);
         
-        this.getContentPane().add(painelRolavel);
+        
+        
         
 //        JPanel painel = new JPanel(); //Um novo Container para o meu Frame (JFrame)
 //        painelRolavel.add(painel); //Pego o Container do meu JFrame e adiciono o Container do java swing (JPanel). Mexo agora apenas com o Container (JPane) do Swing
@@ -108,7 +110,7 @@ public class TelaListarFuncionarios extends JFrame {
      */
     public void iniciarTela() {
         this.setVisible(true);
-        this.mostrarTabela();
+        this.atualizarTabela();
     }
 
     /**

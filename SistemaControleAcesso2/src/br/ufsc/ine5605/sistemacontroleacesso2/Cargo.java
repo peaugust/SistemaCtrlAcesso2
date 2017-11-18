@@ -54,6 +54,14 @@ public abstract class Cargo implements ICargo, Serializable {
         this.nome = nome;
     }
     
+    /**Método que retorna o nome da classe
+     *@return String  Nome da classe
+     */
+    @Override
+    public String toString(){
+		return this.getClass().getSimpleName();
+    }
+    
     /**Método que indica se o cargo possui acesso a Porta do Financeiro
      *@return boolean  Retorna true se o cargo tem acesso e false caso contrario
      */

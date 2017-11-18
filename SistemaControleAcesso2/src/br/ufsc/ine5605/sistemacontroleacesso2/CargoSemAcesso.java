@@ -31,6 +31,14 @@ public class CargoSemAcesso extends Cargo{
 	public boolean temAcesso() {
 		return false;
 	}
+    
+    /**Método que retorna o nome da classe
+     *@return String  Nome da classe
+     */
+    @Override
+    public String toString(){
+		return this.getClass().getSimpleName();
+    }
 
     
 }
