@@ -37,7 +37,7 @@ public class CargoSemAcesso extends Cargo{
      */
     @Override
     public String toString(){
-		return this.getClass().getSimpleName();
+		return this.getNome() + " (" + this.getCodigo() + ") ";
     }
 
     

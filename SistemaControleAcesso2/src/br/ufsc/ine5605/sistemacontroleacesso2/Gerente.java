@@ -33,6 +33,6 @@ public class Gerente extends CargoSemAcesso{
      */
     @Override
     public String toString(){
-		return this.getClass().getSimpleName();
+		return this.getNome() + " (" + this.getCodigo() + ") ";
     }
 }
