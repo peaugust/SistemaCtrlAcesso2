@@ -1,15 +1,22 @@
 
 package br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.Cargo;
+import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.interfaces.ICargo;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,11 +45,12 @@ public class TelaCadastrarFuncionario extends JFrame {
     private JLabel labelSalario;
     private JTextField campoSalario;
     private JLabel labelCargo;
-    private JTextField campoCargo;
+    private JComboBox comboCargo;
     private JButton botaoCriar;
     private JButton botaoVoltar;
     private JButton botaoListarCargos;
     private GerenciadorBotoes gerenciadorBotoes;
+//    private GerenciadorComboBox gerenciadorComboBox;
             
     //Construtor:
     public TelaCadastrarFuncionario () {
@@ -269,8 +277,12 @@ public class TelaCadastrarFuncionario extends JFrame {
         //Adicionar o campo ao meu container:
         painel.add(this.campoSalario, constraints);
         
+        //
+        //CombBox:
+        //
+        
         //Colocar os campos para inserir dados:
-        this.campoCargo = new JTextField(15);
+        this.comboCargo = new JComboBox();
         //Definir as suas configurações:
         constraints.gridx = 1;
         constraints.gridy = 7;
@@ -278,8 +290,10 @@ public class TelaCadastrarFuncionario extends JFrame {
         constraints.weighty = 0;
         constraints.anchor = GridBagConstraints.LINE_START;
         constraints.fill = GridBagConstraints.BOTH;
+        //Adicionar o ActionListener:
+        this.comboCargo.addActionListener(this.gerenciadorBotoes);
         //Adicionar o campo ao meu container:
-        painel.add(this.campoCargo, constraints);
+        painel.add(this.comboCargo, constraints);
         
         //
         //Botoes:
@@ -332,6 +346,7 @@ public class TelaCadastrarFuncionario extends JFrame {
      */
     public void iniciarTela() {
         this.setVisible(true);
+        this.carregarComboBox();
     }
     
     /**
@@ -339,6 +354,19 @@ public class TelaCadastrarFuncionario extends JFrame {
      */
     public void desligarTela() {
         this.setVisible(false);
+    }
+    
+    public void carregarComboBox () {
+//        Vector list = new Vector();
+//        list.addAll(ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().getCargos());
+        
+        ArrayList<Cargo> lista = new ArrayList();
+        
+        for (Cargo cargo : ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().getCargos()) {
+            lista.add(cargo);
+        }
+        
+        this.comboCargo.setModel((ComboBoxModel) lista);
     }
     
     /**
@@ -353,8 +381,9 @@ public class TelaCadastrarFuncionario extends JFrame {
         String telefone = this.campoTelefone.getText();
         int salario = Integer.parseInt(this.campoSalario.getText());
         //Encontrar o cargo:
-        int codigoCargo = Integer.parseInt(this.campoCargo.getText());
-        ICargo cargo = ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(String.valueOf(codigoCargo));
+//        int codigoCargo = Integer.parseInt(this.campoCargo.getText());
+//        ICargo cargo = ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(String.valueOf(codigoCargo));
+        ICargo cargo = (ICargo) this.comboCargo.getSelectedItem();
         //Para o dia de nascimento:
         int ano = Integer.parseInt(this.campoAno.getText());
         int mes = Integer.parseInt(this.campoMes.getText());
@@ -392,7 +421,6 @@ public class TelaCadastrarFuncionario extends JFrame {
                     campoAno.setText("");
                     campoTelefone.setText("");
                     campoSalario.setText("");
-                    campoCargo.setText("");
                     
                     
                 } catch ( IllegalArgumentException execao) { //Vai criar um JOptionPane avisando qual foi o erro de Input:
@@ -425,7 +453,6 @@ public class TelaCadastrarFuncionario extends JFrame {
                 campoAno.setText("");
                 campoTelefone.setText("");
                 campoSalario.setText("");
-                campoCargo.setText("");
                     
             }
         }
