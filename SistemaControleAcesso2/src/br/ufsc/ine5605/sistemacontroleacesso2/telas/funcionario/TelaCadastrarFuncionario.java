@@ -59,7 +59,7 @@ public class TelaCadastrarFuncionario extends JFrame {
         
         //Metodo para configurar a GUI:
         this.definirGUI();
-        
+   
         //Mudar o titula da minha Frame:
         this.setTitle("Cadastrar um Funcionario:");
         //Quando clicado no X na Frame, não acontece nada:
@@ -360,13 +360,15 @@ public class TelaCadastrarFuncionario extends JFrame {
 //        Vector list = new Vector();
 //        list.addAll(ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().getCargos());
         
-        ArrayList<Cargo> lista = new ArrayList();
+        //ArrayList<Cargo> lista = new ArrayList();
         
         for (Cargo cargo : ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().getCargos()) {
-            lista.add(cargo);
+            //lista.add(cargo);
+            this.comboCargo.addItem(cargo);
         }
         
-        this.comboCargo.setModel((ComboBoxModel) lista);
+        //this.comboCargo.setModel(lista.toArray());
+        
     }
     
     /**
