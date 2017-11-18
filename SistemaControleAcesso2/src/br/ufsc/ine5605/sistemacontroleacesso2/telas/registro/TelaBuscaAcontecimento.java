@@ -6,6 +6,7 @@
 package br.ufsc.ine5605.sistemacontroleacesso2.telas.registro;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -15,8 +16,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +33,8 @@ public class TelaBuscaAcontecimento extends JFrame {
     private JTextField campoAcontecimento;
     private JButton botaoBuscar;
     private JButton botaoVoltar;
+    private JTable jTableItens;
+    private JScrollPane spBaseTabela;
 
     //Construtor:
     public TelaBuscaAcontecimento() {
@@ -85,11 +91,11 @@ public class TelaBuscaAcontecimento extends JFrame {
 
         this.botaoBuscar = new JButton("Buscar");
         //Definir o layout:
-        constraints.gridx = 0;
-        constraints.gridy = 9;
+        constraints.gridx = 2;
+        constraints.gridy = 0;
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.gridwidth = 1; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicioanr o action listener:
         this.botaoBuscar.addActionListener(this.gerenciadorBotoes);
@@ -109,6 +115,17 @@ public class TelaBuscaAcontecimento extends JFrame {
         this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoVoltar, constraints);
+
+        this.jTableItens = new JTable();
+        this.jTableItens.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        this.jTableItens.setFillsViewportHeight(true);
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 4;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        this.spBaseTabela = new JScrollPane(jTableItens);
+        painel.add(spBaseTabela, constraints);
     }
 
     /**
@@ -121,8 +138,15 @@ public class TelaBuscaAcontecimento extends JFrame {
     public void desligarTela() {
         this.setVisible(false);
     }
-    
-    //TODO: FAZER A LISTAGEM
+
+    private void updateData() {
+        DefaultTableModel modelTbItens = new DefaultTableModel();
+        modelTbItens.addColumn("Nome");
+        modelTbItens.addColumn("Cargo");
+
+        //for (Registro registroBusca : ) {
+        }
+        //TODO: FAZER A LISTAGEM
 
     public class GerenciadorBotoes implements ActionListener {
 
@@ -132,7 +156,7 @@ public class TelaBuscaAcontecimento extends JFrame {
 
                 try {
                     //Chama o metodo de adicionar funcionario (joga execoes):
-//                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(Integer.parseInt(campoAcontecimento.getText()));
+                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(Integer.parseInt(campoAcontecimento.getText()));
                     //Trocar para a tela anterior:
                     desligarTela();
                     ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
