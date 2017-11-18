@@ -12,6 +12,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -119,9 +120,8 @@ public class TelaBuscaAcontecimento extends JFrame {
         //Adicionar o botao:
         painel.add(this.botaoVoltar, constraints);
         
-        this.jComboAcontecimentos = new JComboBox();
-        this.jComboAcontecimentos.addItem(AcontecimentoRegistro.CARGOSEMACESSO);
-        this.jComboAcontecimentos.addItem(AcontecimentoRegistro.FORADEHORARIO); 
+        this.jComboAcontecimentos = new JComboBox(AcontecimentoRegistro.values());
+       
         constraints.gridx = 0;
         constraints.gridy = 11;
         constraints.weightx = 0;
