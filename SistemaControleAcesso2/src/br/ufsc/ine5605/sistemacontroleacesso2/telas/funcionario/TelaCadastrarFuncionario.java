@@ -364,7 +364,7 @@ public class TelaCadastrarFuncionario extends JFrame {
         
         for (Cargo cargo : ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().getCargos()) {
             //lista.add(cargo);
-            this.comboCargo.addItem(cargo);
+            this.comboCargo.addItem(cargo +" - "+ cargo.getNome());
         }
         
         //this.comboCargo.setModel(lista.toArray());
