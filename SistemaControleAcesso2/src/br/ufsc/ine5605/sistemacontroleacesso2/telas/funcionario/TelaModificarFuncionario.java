@@ -1,5 +1,6 @@
 package br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.Cargo;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
@@ -9,8 +10,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -42,10 +47,11 @@ public class TelaModificarFuncionario extends JFrame {
     private JLabel labelSalario;
     private JTextField campoSalario;
     private JLabel labelCargo;
-    private JTextField campoCargo;
+//    private JTextField campoCargo;
+    private JComboBox comboCargo;
     private JButton botaoCarregar;
     private JButton botaoModificar;
-    private JButton botaoListarCargos;
+//    private JButton botaoListarCargos;
     private JButton botaoVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
 
@@ -298,8 +304,24 @@ public class TelaModificarFuncionario extends JFrame {
         //Adicionar o campo ao meu container:
         painel.add(this.campoSalario, constraints);
 
+//        //Colocar os campos para inserir dados:
+//        this.campoCargo = new JTextField(15);
+//        //Definir as suas configurações:
+//        constraints.gridx = 1;
+//        constraints.gridy = 10;
+//        constraints.weightx = 0;
+//        constraints.weighty = 0;
+//        constraints.anchor = GridBagConstraints.LINE_START;
+//        constraints.fill = GridBagConstraints.BOTH;
+//        //Adicionar o campo ao meu container:
+//        painel.add(this.campoCargo, constraints);
+        
+        //
+        //CombBox:
+        //
+        
         //Colocar os campos para inserir dados:
-        this.campoCargo = new JTextField(15);
+        this.comboCargo = new JComboBox();
         //Definir as suas configurações:
         constraints.gridx = 1;
         constraints.gridy = 10;
@@ -307,8 +329,10 @@ public class TelaModificarFuncionario extends JFrame {
         constraints.weighty = 0;
         constraints.anchor = GridBagConstraints.LINE_START;
         constraints.fill = GridBagConstraints.BOTH;
+//        //Adicionar o ActionListener:
+//        this.comboCargo.addActionListener(this.gerenciadorBotoes);
         //Adicionar o campo ao meu container:
-        painel.add(this.campoCargo, constraints);
+        painel.add(this.comboCargo, constraints);
 
         //
         //Botoes:
@@ -340,25 +364,25 @@ public class TelaModificarFuncionario extends JFrame {
         //Adicionar o botao:
         painel.add(this.botaoModificar, constraints);
         
-        //Botao para Listar:
-        this.botaoListarCargos = new JButton ("Listar Cargos");
-        //Definir o layout:
-        constraints.gridx = 0;
-        constraints.gridy = 12;
-        constraints.weightx = 0;
-        constraints.weighty = 0;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
-        constraints.fill = GridBagConstraints.BOTH;
-        //Adicioanr o action listener:
-        this.botaoListarCargos.addActionListener(this.gerenciadorBotoes);
-        //Adicionar o botao:
-        painel.add(this.botaoListarCargos, constraints);
+//        //Botao para Listar:
+//        this.botaoListarCargos = new JButton ("Listar Cargos");
+//        //Definir o layout:
+//        constraints.gridx = 0;
+//        constraints.gridy = 12;
+//        constraints.weightx = 0;
+//        constraints.weighty = 0;
+//        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+//        constraints.fill = GridBagConstraints.BOTH;
+//        //Adicioanr o action listener:
+//        this.botaoListarCargos.addActionListener(this.gerenciadorBotoes);
+//        //Adicionar o botao:
+//        painel.add(this.botaoListarCargos, constraints);
 
         //Botao para voltar:
         this.botaoVoltar = new JButton("Voltar");
         //Definir o layout:
         constraints.gridx = 0;
-        constraints.gridy = 13;
+        constraints.gridy = 12;
         constraints.weightx = 0;
         constraints.weighty = 0;
         constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
@@ -369,12 +393,28 @@ public class TelaModificarFuncionario extends JFrame {
         painel.add(this.botaoVoltar, constraints);
 
     }
+    
+    public void carregarComboBox () {
+        
+        ArrayList<Cargo> lista = new ArrayList();
+        
+        Vector<Cargo> vetor = new Vector();
+        
+        for (Cargo cargo : ControladorGeral.getInstance().getControladorCargo().getMapeadorCargo().getCargos()) {
+            vetor.add(cargo);
+        }
+        
+        DefaultComboBoxModel model = new DefaultComboBoxModel(vetor);
+        
+        this.comboCargo.setModel(model);
+    }
 
     /**
      * Deixa a tela visivel.
      */
     public void iniciarTela() {
         this.setVisible(true);
+        this.carregarComboBox();
     }
 
     /**
@@ -396,8 +436,9 @@ public class TelaModificarFuncionario extends JFrame {
         String telefone = this.campoTelefone.getText();
         int salario = Integer.parseInt(this.campoSalario.getText());
         //Encontrar o cargo:
-        int codigoCargo = Integer.parseInt(this.campoCargo.getText());
-        ICargo cargo = ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(String.valueOf(codigoCargo));
+//        int codigoCargo = Integer.parseInt(this.campoCargo.getText());
+//        ICargo cargo = ControladorGeral.getInstance().getControladorCargo().findCargoByCodigo(String.valueOf(codigoCargo));
+        ICargo cargo = (ICargo) this.comboCargo.getSelectedItem();
         //Para o dia de nascimento:
         int ano = Integer.parseInt(this.campoAno.getText());
         int mes = Integer.parseInt(this.campoMes.getText());
@@ -433,11 +474,12 @@ public class TelaModificarFuncionario extends JFrame {
                         campoNovaMatricula.setText(String.valueOf(funcionarioModificar.getNumeroDeMatricula()));
                         campoNome.setText(funcionarioModificar.getNome());
                         campoDia.setText(String.valueOf(funcionarioModificar.getDataDeNascimento().get(Calendar.DATE)));
-                        campoMes.setText(String.valueOf(funcionarioModificar.getDataDeNascimento().get(Calendar.MONTH)));
+                        campoMes.setText(String.valueOf(funcionarioModificar.getDataDeNascimento().get(Calendar.MONTH)+1));
                         campoAno.setText(String.valueOf(funcionarioModificar.getDataDeNascimento().get(Calendar.YEAR)));
                         campoTelefone.setText(funcionarioModificar.getTelefone());
                         campoSalario.setText(String.valueOf(funcionarioModificar.getSalario()));
-                        campoCargo.setText(funcionarioModificar.getCargo().getNome());
+//                        campoCargo.setText(funcionarioModificar.getCargo().getNome());
+                        comboCargo.setSelectedItem(funcionarioModificar.getCargo());
 
                     } else { //Se ele nao encontrar, avisar o usuario:
 
@@ -484,7 +526,8 @@ public class TelaModificarFuncionario extends JFrame {
                         campoAno.setText("");
                         campoTelefone.setText("");
                         campoSalario.setText("");
-                        campoCargo.setText("");
+//                        campoCargo.setText("");
+                        comboCargo.setSelectedIndex(0);
 
                     } else { //Se ele nao encontrar, avisar o usuario:
 
@@ -517,10 +560,10 @@ public class TelaModificarFuncionario extends JFrame {
                     }
                 }
 
-            }else if (evento.getSource().equals(botaoListarCargos)) {
-                
-                ControladorGeral.getInstance().getControladorCargo().getTelaListarCargo().iniciarTela();
-                
+//            }else if (evento.getSource().equals(botaoListarCargos)) {
+//                
+//                ControladorGeral.getInstance().getControladorCargo().getTelaListarCargo().iniciarTela();
+//                
             } else if (evento.getSource().equals(botaoVoltar)) {
 
                 desligarTela();
@@ -534,7 +577,8 @@ public class TelaModificarFuncionario extends JFrame {
                 campoAno.setText("");
                 campoTelefone.setText("");
                 campoSalario.setText("");
-                campoCargo.setText("");
+//                campoCargo.setText("");
+                comboCargo.setSelectedIndex(0);
 
             }
         }
