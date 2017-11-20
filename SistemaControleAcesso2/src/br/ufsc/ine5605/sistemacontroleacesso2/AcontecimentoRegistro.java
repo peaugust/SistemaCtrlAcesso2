@@ -23,8 +23,7 @@ public enum AcontecimentoRegistro {
     CARGOSEMACESSO("O Usuario em questao nao possui acesso a porta e"
                    + " tentou abri-la."),
     
-    BLOQUEADO("O Usuário realizou 2 tentaivas de acesso a Porta do Financeiro "
-            + "quando não havia"+ "permissão para tal.");
+    BLOQUEADO("O Usuário foi bloqueado por execer as tentativas de acesso permitidas");
     
     //Atributos
     /**
