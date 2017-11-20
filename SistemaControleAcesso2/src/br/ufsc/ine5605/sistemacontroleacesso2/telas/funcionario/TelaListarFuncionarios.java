@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -74,7 +75,8 @@ public class TelaListarFuncionarios extends JFrame {
         //Adicionar uma linha:
         for (Funcionario funcionarioLista : ControladorGeral.getInstance().getControladorFuncionario().getMapeador().getFuncionarios()) {
             modelo.addRow(new Object[]{ String.valueOf(funcionarioLista.getNumeroDeMatricula()), funcionarioLista.getNome(), funcionarioLista.getTelefone(),
-            String.valueOf(funcionarioLista.getSalario()), funcionarioLista.getCargo().getNome(), funcionarioLista.getDataDeNascimento().toString()} );
+            String.valueOf(funcionarioLista.getSalario()), funcionarioLista.getCargo().getNome(), funcionarioLista.getDataDeNascimento().get(Calendar.DATE)+
+            "/"+(funcionarioLista.getDataDeNascimento().get(Calendar.MONTH)+1)+"/"+funcionarioLista.getDataDeNascimento().get(Calendar.YEAR)} );
         }
         
         this.tabela.setModel(modelo);
