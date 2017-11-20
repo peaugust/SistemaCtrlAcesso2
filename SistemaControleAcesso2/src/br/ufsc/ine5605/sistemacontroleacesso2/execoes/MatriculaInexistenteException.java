@@ -10,9 +10,9 @@ package br.ufsc.ine5605.sistemacontroleacesso2.execoes;
  *
  * @author PEaug
  */
-public class MatriculaInexistente extends IllegalArgumentException {
+public class MatriculaInexistenteException extends IllegalArgumentException {
 
-    public MatriculaInexistente() {
+    public MatriculaInexistenteException() {
         super("Não existe funcionário com essa matrícula");
     }
     

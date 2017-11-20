@@ -4,7 +4,7 @@ import br.ufsc.ine5605.sistemacontroleacesso2.AcontecimentoRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.CargoComAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
-import br.ufsc.ine5605.sistemacontroleacesso2.execoes.MatriculaInexistente;
+import br.ufsc.ine5605.sistemacontroleacesso2.execoes.MatriculaInexistenteException;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.portafinanceiro.TelaPortaFinanceiro;
 import java.util.Calendar;
 
@@ -59,7 +59,7 @@ public class ControladorPortaFinanceiro {
         }
         //Se nao existir, joga uma excecao;
         if (!(existe)) {
-            throw new MatriculaInexistente();
+            throw new MatriculaInexistenteException();
         }
         //Ver se eh um funcionario que tem uma array de horarios:
         if (funcionarioPorta.getCargo() instanceof CargoComAcesso) {
