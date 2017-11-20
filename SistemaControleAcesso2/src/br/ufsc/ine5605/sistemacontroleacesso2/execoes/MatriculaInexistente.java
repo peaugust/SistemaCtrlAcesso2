@@ -5,7 +5,6 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2.execoes;
 
-import javax.swing.JOptionPane;
 
 /**
  *
