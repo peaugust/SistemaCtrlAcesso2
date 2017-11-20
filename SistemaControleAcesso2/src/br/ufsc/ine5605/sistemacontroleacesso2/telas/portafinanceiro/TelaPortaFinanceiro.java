@@ -227,7 +227,7 @@ public class TelaPortaFinanceiro extends JFrame {
                     
                     //Criar o Calendar com os dados obtidos:
                     Calendar horario = Calendar.getInstance();
-                    horario.clear();
+                    //horario.clear();
                     horario.set(Calendar.HOUR_OF_DAY, hora);
                     horario.set(Calendar.MINUTE, minutos);
                     
