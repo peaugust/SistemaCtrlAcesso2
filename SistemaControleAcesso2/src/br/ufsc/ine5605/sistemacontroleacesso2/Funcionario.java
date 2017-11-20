@@ -80,7 +80,17 @@ public class Funcionario implements Serializable {
     
 
     //Metodos:
-    public void avisarFuncionario() {
+
+    public boolean estahBloqueado(){
+        if(this.avisosRegistro < 3){
+            return this.bloqueado;
+        }else{
+            this.bloqueado = true;
+        }
+        return this.bloqueado;
+    }
+    
+    public void avisarFuncionario(){
         this.avisosRegistro++;
     }
     
