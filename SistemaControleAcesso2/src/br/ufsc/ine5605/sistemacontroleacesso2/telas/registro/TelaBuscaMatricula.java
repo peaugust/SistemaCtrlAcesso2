@@ -190,6 +190,8 @@ public class TelaBuscaMatricula extends JFrame {
             } else if (evento.getSource().equals(botaoVoltar)) {
                 desligarTela();
                 ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
+                DefaultTableModel modelTbItens = new DefaultTableModel();
+                jTableItens.setModel(modelTbItens);
                 //Tirar os inputs anteriores do buffer:
                 campoMatricula.setText("");
 
