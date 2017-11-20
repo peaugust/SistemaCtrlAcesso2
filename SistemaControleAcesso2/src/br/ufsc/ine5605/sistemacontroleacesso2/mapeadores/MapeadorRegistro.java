@@ -30,6 +30,7 @@ public class MapeadorRegistro {
     }
     public void put(Registro registro){
         cacheRegistros.put(registro.getChave(), registro);
+        persist();
     }
    
     public Registro get(Integer chave) {
@@ -52,16 +53,19 @@ public class MapeadorRegistro {
     
     private void persist(){
         try {
-            FileOutputStream fOS = new FileOutputStream(fileName);
+            FileOutputStream fOS = new FileOutputStream(this.fileName);
             ObjectOutputStream oOS = new ObjectOutputStream(fOS);
             
-            oOS.writeObject(cacheRegistros);
+            oOS.writeObject(this.cacheRegistros);
             
             oOS.flush();
             fOS.flush();
             
             oOS.close();
             fOS.close();
+            
+            oOS = null;
+            fOS = null;
          
             
         } catch (FileNotFoundException ex) {
@@ -74,13 +78,16 @@ public class MapeadorRegistro {
     
     public void load(){
         try {
-            FileInputStream fIS = new FileInputStream(fileName);
+            FileInputStream fIS = new FileInputStream(this.fileName);
             ObjectInputStream oIS = new ObjectInputStream(fIS);
             
-            cacheRegistros = (HashMap<Integer, Registro>) oIS.readObject();
+            this.cacheRegistros = (HashMap<Integer, Registro>) oIS.readObject();
             
             oIS.close();
             fIS.close();
+            
+            oIS = null;
+            fIS = null;
             
         } catch (FileNotFoundException ex) {
             persist();

@@ -147,13 +147,15 @@ public class TelaBuscaAcontecimento extends JFrame {
         this.setVisible(false);
     }
 
-    public void updateData(Collection<Registro> itens) {
+    public void updateData(ArrayList<Registro> itens) {
+           System.out.println("entrei no método");
         DefaultTableModel modelTbItens = new DefaultTableModel();
         modelTbItens.addColumn("Data");
         modelTbItens.addColumn("Matrícula");
-
+        
         for (Registro registroBusca : itens ) {
-            modelTbItens.addRow(new Object[]{registroBusca.getDataAcontecimento(), registroBusca.getNumDeMatricula()});
+            modelTbItens.addRow(new Object[]{registroBusca.getDataAcontecimento().getTime(), registroBusca.getNumDeMatricula()});
+            System.out.println(itens.size());
         }
         
         jTableItens.setModel(modelTbItens);
@@ -169,12 +171,15 @@ public class TelaBuscaAcontecimento extends JFrame {
 
                 try {
                     //Chama o metodo de adicionar funcionario (joga execoes):
-                    updateData(ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(jComboAcontecimentos.getItemCount()));
+                    updateData(ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(jComboAcontecimentos.getSelectedIndex()));
+                    System.out.println("No Try");  
+                    System.out.println(jComboAcontecimentos.getSelectedIndex());
+                    System.out.println(ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(jComboAcontecimentos.getSelectedIndex()).toString());
                     //Trocar para a tela anterior:
                     //desligarTela();
                     //ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
                     //Tirar os inputs anteriores do buffer:
-
+                    //);
                 } catch (IllegalArgumentException execao) { //Vai criar um JOptionPane avisando qual foi o erro de Input:
 
                     if (execao.getMessage().equals("For input string: \"\"")) {

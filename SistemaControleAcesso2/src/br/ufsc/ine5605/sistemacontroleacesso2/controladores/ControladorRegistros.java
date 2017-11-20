@@ -64,7 +64,7 @@ public class ControladorRegistros {
      * @return registrosEncontrados ArrayList - ArrayList com os registros
      * selecionados
      */
-    public Collection<Registro> findRegistroByAcontecimento(int indiceDoAcontecimento) {
+    public ArrayList<Registro> findRegistroByAcontecimento(int indiceDoAcontecimento) {
         //Puxando a Collection do Mapeador
         Collection<Registro> listaRegistros = this.mapeadorRegistro.getList();
         //Criando a Collection de retorno
