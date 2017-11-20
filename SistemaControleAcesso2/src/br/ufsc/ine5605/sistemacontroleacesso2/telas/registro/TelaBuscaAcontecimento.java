@@ -113,25 +113,25 @@ public class TelaBuscaAcontecimento extends JFrame {
         //Botao para voltar:
         this.botaoVoltar = new JButton("Voltar");
         //Definir o layout:
-        constraints.gridx = 0;
-        constraints.gridy = 10;
+        constraints.gridx = 4;
+        constraints.gridy = 0;
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.gridwidth = 1; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicioanr o action listener:
         this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
-        painel.add(this.botaoVoltar, constraints);              
-                
+        painel.add(this.botaoVoltar, constraints);
+
         this.jTableItens = new JTable();
-        this.jTableItens.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        this.jTableItens.setPreferredScrollableViewportSize(new Dimension(500, 100));
         this.jTableItens.setFillsViewportHeight(true);
         constraints.fill = GridBagConstraints.CENTER;
-        constraints.gridwidth = 2;
-        constraints.gridheight = 4;
+        constraints.gridwidth = 5;
+        constraints.gridheight = 5;
         constraints.gridx = 0;
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         this.spBaseTabela = new JScrollPane(jTableItens);
         painel.add(spBaseTabela, constraints);
     }
@@ -148,20 +148,20 @@ public class TelaBuscaAcontecimento extends JFrame {
     }
 
     public void updateData(ArrayList<Registro> itens) {
-           System.out.println("entrei no método");
+
         DefaultTableModel modelTbItens = new DefaultTableModel();
         modelTbItens.addColumn("Data");
         modelTbItens.addColumn("Matrícula");
-        
-        for (Registro registroBusca : itens ) {
+
+        for (Registro registroBusca : itens) {
             modelTbItens.addRow(new Object[]{registroBusca.getDataAcontecimento().getTime(), registroBusca.getNumDeMatricula()});
-            System.out.println(itens.size());
+
         }
-        
+
         jTableItens.setModel(modelTbItens);
         this.repaint();
-        }
-        //TODO: FAZER A LISTAGEM
+    }
+    //TODO: FAZER A LISTAGEM
 
     public class GerenciadorBotoes implements ActionListener {
 
@@ -172,14 +172,7 @@ public class TelaBuscaAcontecimento extends JFrame {
                 try {
                     //Chama o metodo de adicionar funcionario (joga execoes):
                     updateData(ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(jComboAcontecimentos.getSelectedIndex()));
-                    System.out.println("No Try");  
-                    System.out.println(jComboAcontecimentos.getSelectedIndex());
-                    System.out.println(ControladorGeral.getInstance().getControladorRegistros().findRegistroByAcontecimento(jComboAcontecimentos.getSelectedIndex()).toString());
-                    //Trocar para a tela anterior:
-                    //desligarTela();
-                    //ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
-                    //Tirar os inputs anteriores do buffer:
-                    //);
+
                 } catch (IllegalArgumentException execao) { //Vai criar um JOptionPane avisando qual foi o erro de Input:
 
                     if (execao.getMessage().equals("For input string: \"\"")) {

@@ -5,18 +5,24 @@
  */
 package br.ufsc.ine5605.sistemacontroleacesso2.telas.registro;
 
+import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.controladores.ControladorGeral;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +35,8 @@ public class TelaBuscaMatricula extends JFrame {
     private JTextField campoMatricula;
     private JButton botaoBuscar;
     private JButton botaoVoltar;
+    private JTable jTableItens;
+    private JScrollPane spBaseTabela;
 
     //Construtor:
     public TelaBuscaMatricula() {
@@ -85,11 +93,11 @@ public class TelaBuscaMatricula extends JFrame {
 
         this.botaoBuscar = new JButton("Buscar");
         //Definir o layout:
-        constraints.gridx = 0;
-        constraints.gridy = 9;
+        constraints.gridx = 2;
+        constraints.gridy = 0;
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.gridwidth = 1; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicioanr o action listener:
         this.botaoBuscar.addActionListener(this.gerenciadorBotoes);
@@ -99,16 +107,27 @@ public class TelaBuscaMatricula extends JFrame {
         //Botao para voltar:
         this.botaoVoltar = new JButton("Voltar");
         //Definir o layout:
-        constraints.gridx = 0;
-        constraints.gridy = 10;
+        constraints.gridx = 4;
+        constraints.gridy = 0;
         constraints.weightx = 0;
         constraints.weighty = 0;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+        constraints.gridwidth = 1; //Determina quantas celulas da grid ela ocupa na horizontal
         constraints.fill = GridBagConstraints.BOTH;
         //Adicioanr o action listener:
         this.botaoVoltar.addActionListener(this.gerenciadorBotoes);
         //Adicionar o botao:
         painel.add(this.botaoVoltar, constraints);
+
+        this.jTableItens = new JTable();
+        this.jTableItens.setPreferredScrollableViewportSize(new Dimension(500, 100));
+        this.jTableItens.setFillsViewportHeight(true);
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.gridwidth = 5;
+        constraints.gridheight = 5;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        this.spBaseTabela = new JScrollPane(jTableItens);
+        painel.add(spBaseTabela, constraints);
     }
 
     /**
@@ -122,6 +141,21 @@ public class TelaBuscaMatricula extends JFrame {
         this.setVisible(false);
     }
 
+    public void updateData(ArrayList<Registro> itens) {
+        DefaultTableModel modelTbItens = new DefaultTableModel();
+        modelTbItens.addColumn("Data");
+        modelTbItens.addColumn("Matrícula");
+        modelTbItens.addColumn("Acontecimento");
+
+        for (Registro registroBusca : itens) {
+            modelTbItens.addRow(new Object[]{registroBusca.getDataAcontecimento().getTime(), registroBusca.getNumDeMatricula(),
+                registroBusca.getAcontecimento().getDescricao()});
+        }
+
+        jTableItens.setModel(modelTbItens);
+        this.repaint();
+    }
+
     //TODO: Implementar a Listagem
     public class GerenciadorBotoes implements ActionListener {
 
@@ -131,10 +165,11 @@ public class TelaBuscaMatricula extends JFrame {
 
                 try {
                     //Chama o metodo de adicionar funcionario (joga execoes):
-//                    ControladorGeral.getInstance().getControladorRegistros().findRegistroByMatricula(Integer.parseInt(campoMatricula.getText()));
+
+                    updateData(ControladorGeral.getInstance().getControladorRegistros().findRegistroByMatricula(Integer.parseInt(campoMatricula.getText())));
                     //Trocar para a tela anterior:
-                    desligarTela();
-                    ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
+                    //desligarTela();
+                    //ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
                     //Tirar os inputs anteriores do buffer:
                     campoMatricula.setText("");
 
@@ -153,7 +188,6 @@ public class TelaBuscaMatricula extends JFrame {
                 }
 
             } else if (evento.getSource().equals(botaoVoltar)) {
-
                 desligarTela();
                 ControladorGeral.getInstance().getControladorRegistros().getTela().iniciarTela();
                 //Tirar os inputs anteriores do buffer:
