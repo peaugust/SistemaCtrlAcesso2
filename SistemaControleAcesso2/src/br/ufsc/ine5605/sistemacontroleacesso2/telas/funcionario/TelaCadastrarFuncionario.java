@@ -49,7 +49,7 @@ public class TelaCadastrarFuncionario extends JFrame {
     private JComboBox comboCargo;
     private JButton botaoCriar;
     private JButton botaoVoltar;
-    private JButton botaoListarCargos;
+//    private JButton botaoListarCargos;
     private GerenciadorBotoes gerenciadorBotoes;
 //    private GerenciadorComboBox gerenciadorComboBox;
             
@@ -175,8 +175,6 @@ public class TelaCadastrarFuncionario extends JFrame {
         constraints.fill = GridBagConstraints.BOTH;
         //Adicionar esse rotulo ao meu container:
         painel.add(this.labelSalario, constraints);
-        
-        //############ Colocar botao para ver todos os cargos (listar eles) ##############
         
         //Definir o rotulo do cargo:
         this.labelCargo = new JLabel("Digite o código do cargo:     ");
@@ -312,25 +310,25 @@ public class TelaCadastrarFuncionario extends JFrame {
         //Adicionar o botao:
         painel.add(this.botaoCriar, constraints);
         
-        //Botao para Listar:
-        this.botaoListarCargos = new JButton ("Listar Cargos");
-        //Definir o layout:
-        constraints.gridx = 0;
-        constraints.gridy = 10;
-        constraints.weightx = 0;
-        constraints.weighty = 0;
-        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
-        constraints.fill = GridBagConstraints.BOTH;
-        //Adicioanr o action listener:
-        this.botaoListarCargos.addActionListener(this.gerenciadorBotoes);
-        //Adicionar o botao:
-        painel.add(this.botaoListarCargos, constraints);
+//        //Botao para Listar:
+//        this.botaoListarCargos = new JButton ("Listar Cargos");
+//        //Definir o layout:
+//        constraints.gridx = 0;
+//        constraints.gridy = 10;
+//        constraints.weightx = 0;
+//        constraints.weighty = 0;
+//        constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
+//        constraints.fill = GridBagConstraints.BOTH;
+//        //Adicioanr o action listener:
+//        this.botaoListarCargos.addActionListener(this.gerenciadorBotoes);
+//        //Adicionar o botao:
+//        painel.add(this.botaoListarCargos, constraints);
                 
         //Botao para voltar:
         this.botaoVoltar = new JButton ("Voltar");
         //Definir o layout:
         constraints.gridx = 0;
-        constraints.gridy = 11;
+        constraints.gridy = 10;
         constraints.weightx = 0;
         constraints.weighty = 0;
         constraints.gridwidth = 2; //Determina quantas celulas da grid ela ocupa na horizontal
@@ -415,9 +413,8 @@ public class TelaCadastrarFuncionario extends JFrame {
                 try {
                     //Chama o metodo de adicionar funcionario (joga execoes):
                     ControladorGeral.getInstance().getControladorFuncionario().adicionarFuncionario( criarEnvelope() );
-                    //Trocar para a tela anterior:
-                    desligarTela();
-                    ControladorGeral.getInstance().getControladorFuncionario().getTela().iniciarTela();
+                    //Avisar sobre o sucesso para o usuario:
+                    JOptionPane.showMessageDialog(null, "Usuário Criado com Sucesso!");
                     //Tirar os inputs anteriores do buffer:
                     campoMatricula.setText("");
                     campoNome.setText("");
@@ -442,10 +439,10 @@ public class TelaCadastrarFuncionario extends JFrame {
                     
                 }
                
-            }else if (evento.getSource().equals(botaoListarCargos)) {
-                
-                ControladorGeral.getInstance().getControladorCargo().getTelaListarCargo().iniciarTela();
-                
+//            }else if (evento.getSource().equals(botaoListarCargos)) {
+//                
+//                ControladorGeral.getInstance().getControladorCargo().getTelaListarCargo().iniciarTela();
+//                
             } else if (evento.getSource().equals(botaoVoltar)) {
                 
                 desligarTela();
