@@ -2,9 +2,7 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 
 import br.ufsc.ine5605.sistemacontroleacesso2.AcontecimentoRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.CargoComAcesso;
-import br.ufsc.ine5605.sistemacontroleacesso2.CargoSemAcesso;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
-import br.ufsc.ine5605.sistemacontroleacesso2.Registro;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeRegistro;
 import br.ufsc.ine5605.sistemacontroleacesso2.execoes.MatriculaInexistente;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.portafinanceiro.TelaPortaFinanceiro;
@@ -21,7 +19,7 @@ public class ControladorPortaFinanceiro {
      * Atributo com o ControladorGeral do sistema.
      */
     private ControladorGeral controladorGeral;
-    
+
     /**
      * Atributo com a GUI da PortaFinanceiro.
      */
@@ -29,8 +27,9 @@ public class ControladorPortaFinanceiro {
 
     //Construtor:
     /**
-     * Construtor da Classe. Recebe um ControladorPortaFinanceiro como parâmetro.
-     * 
+     * Construtor da Classe. Recebe um ControladorPortaFinanceiro como
+     * parâmetro.
+     *
      * @param controlador - Owner dessa classe.
      */
     public ControladorPortaFinanceiro(ControladorGeral controlador) {
@@ -61,18 +60,25 @@ public class ControladorPortaFinanceiro {
         //Se nao existir, joga uma excecao;
         if (!(existe)) {
             throw new MatriculaInexistente();
-        }        
+        }
         //Ver se eh um funcionario que tem uma array de horarios:
         if (funcionarioPorta.getCargo() instanceof CargoComAcesso) {
             //Se eh, verificar o horario:
             CargoComAcesso cargo = (CargoComAcesso) funcionarioPorta.getCargo();
+            if (funcionarioPorta.estahBloqueado()) {
+                EnvelopeRegistro envelope = new EnvelopeRegistro(AcontecimentoRegistro.BLOQUEADO, horario, numeroDeMatricula, ControladorGeral.getInstance().getControladorRegistros().getMapeadorRegistro().getProximaChave());
+                controladorGeral.getControladorRegistros().adicionarRegistro(envelope);
+                return AcontecimentoRegistro.BLOQUEADO.getDescricao();
+            }
             if (cargo.verificarHorario(horario)) {
                 //O horario deixa abrir a porta:
                 return "Acesso Autorizado.";
             } else {
+                funcionarioPorta.avisarFuncionario();
                 //Caso contrario, criar um registro:
                 EnvelopeRegistro envelope = new EnvelopeRegistro(AcontecimentoRegistro.FORADEHORARIO, horario, numeroDeMatricula, ControladorGeral.getInstance().getControladorRegistros().getMapeadorRegistro().getProximaChave());
                 controladorGeral.getControladorRegistros().adicionarRegistro(envelope);
+
                 return AcontecimentoRegistro.FORADEHORARIO.getDescricao();
             }
         } else if (funcionarioPorta.getCargo().temAcesso()) { //Verificar se eh um cargo de gerencia
@@ -80,19 +86,26 @@ public class ControladorPortaFinanceiro {
             return "Acesso Autorizado.";
         } else {
             //Caso ele nao for:
+            if (funcionarioPorta.estahBloqueado()) {
+                EnvelopeRegistro envelope = new EnvelopeRegistro(AcontecimentoRegistro.BLOQUEADO, horario, numeroDeMatricula, ControladorGeral.getInstance().getControladorRegistros().getMapeadorRegistro().getProximaChave());
+                controladorGeral.getControladorRegistros().adicionarRegistro(envelope);
+                return AcontecimentoRegistro.BLOQUEADO.getDescricao();
+            }else{
             EnvelopeRegistro envelope = new EnvelopeRegistro(AcontecimentoRegistro.CARGOSEMACESSO, horario, numeroDeMatricula, ControladorGeral.getInstance().getControladorRegistros().getMapeadorRegistro().getProximaChave());
             controladorGeral.getControladorRegistros().adicionarRegistro(envelope);
+            funcionarioPorta.avisarFuncionario();
             return AcontecimentoRegistro.CARGOSEMACESSO.getDescricao();
+            }
         }
     }
-    
+
     /**
      * Metodo que retorna a GUI desse controlador.
-     * 
+     *
      * @return TelaPortaFinanceiro.
      */
     public TelaPortaFinanceiro getTela() {
         return telaPortaFinanceiro;
     }
-    
+
 }
