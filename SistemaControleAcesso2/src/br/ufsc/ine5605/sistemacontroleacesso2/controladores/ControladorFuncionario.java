@@ -3,6 +3,7 @@ package br.ufsc.ine5605.sistemacontroleacesso2.controladores;
 import br.ufsc.ine5605.sistemacontroleacesso2.Funcionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.mapeadores.MapeadorFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.envelopes.EnvelopeFuncionario;
+import br.ufsc.ine5605.sistemacontroleacesso2.execoes.AssociacaoCargoFuncionarioException;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaCadastrarFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaFuncionario;
 import br.ufsc.ine5605.sistemacontroleacesso2.telas.funcionario.TelaListarFuncionarios;
@@ -101,7 +102,7 @@ public class ControladorFuncionario {
             
             //Ver se foi associado um cargo a um funcionario
             if (envelope.cargo == null) {
-                throw new IllegalArgumentException("Não foi associado um Cargo a um Funcionario");
+                throw new AssociacaoCargoFuncionarioException();
             }
             
             //Feito o tratamento do Cargo, ano, mes e dia, criar um objeto do tipo Calendar para poder cirar o funcionario
